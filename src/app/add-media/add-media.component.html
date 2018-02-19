@@ -1,2 +1,2 @@
-<input />
-<button>add</button>
+<input #newMedia />
+<button (click)="add(newMedia.value); newMedia.value = '';">Add</button>
