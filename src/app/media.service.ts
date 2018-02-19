@@ -19,11 +19,6 @@ export class MediaService {
   constructor(private http: HttpClient) { }
 
   addMedia(media: Media): Observable<Media> {
-    // If the consumed property of media is undefined, set it to false
-    if (!media.consumed) {
-      media.consumed = false;
-    }
-
     const url = `${this.apiUrl}/user/${this.username}/media`;
     return this.http.put<Media>(url, media, httpOptions)
       .pipe(

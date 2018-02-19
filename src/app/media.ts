@@ -1,4 +1,4 @@
 export class Media {
   name: string;
-  consumed: boolean;
+  consumed: boolean = false;
 }
