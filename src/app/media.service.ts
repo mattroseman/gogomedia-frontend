@@ -20,6 +20,7 @@ export class MediaService {
 
   addMedia(media: Media): Observable<Media> {
     const url = `${this.apiUrl}/user/${this.username}/media`;
+
     return this.http.put<Media>(url, media, httpOptions)
       .pipe(
         tap((media: Media) => console.log(`added media with name: ${media.name}`)),
@@ -27,9 +28,19 @@ export class MediaService {
       );
   }
 
+  getMedia(): Observable<Media[]> {
+    const url = `${this.apiUrl}/user/${this.username}/media`;
+
+    return this.http.get<Media[]>(url)
+      .pipe(
+        tap((media: Media[]) => console.log(`got list of media`)),
+        catchError(this.handleError<Media[]>(`getMedia`, []))
+      );
+  }
+
   private handleError<T>(operation='operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(`${operation} failed with error:\n${error}`);
+      console.error(`${operation} failed with error:\n${error.message}`);
 
       return of(result as T);
     };
