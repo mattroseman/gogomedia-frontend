@@ -41,7 +41,7 @@ button {
   /*border-radius: 5%;*/
   background-color: #3671AB;
 
-  height: 22px;
+  min-height: 22px;
 }
 
 * {
