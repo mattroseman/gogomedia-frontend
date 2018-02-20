@@ -1,9 +1,37 @@
-.media-view {
+.view-media-container {
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+}
+
+.view-media-filter-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  padding-bottom: 10px;
+}
+
+.view-media-filter-button {
+  background-color: #F8F9F9;
+
+  color: #364048;
+
+  width: 75px;
+
+  transition-duration: 0.4s;
+}
+
+.view-media-filter-button:hover {
+  background-color: #3671AB;
+  color: #F8F9F9;
+}
+
+.view-media-list {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-
-  padding: 20px;
 
   width: 200px;
 }
@@ -15,7 +43,9 @@
 
   border-style: solid;
   border-width: 1px;
-  border-color: #888;
+  border-color: #364048;
+
+  background-color: #FFFFFF;
 
   padding: 3px;
   margin: 3px;

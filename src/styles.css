@@ -1,11 +1,19 @@
+/*
+Primary Color:   #3671AB
+Secondary Color: #FFb242
+Dark Gray:       #364048
+Light Gray:      #F8F9F9
+White:           #FFFFFF
+ */
+
 h1 {
-  color: #369;
+  color: #364048;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%
 }
 
 h2, h3 {
-  color: #444;
+  color: #364048;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
 }
@@ -15,7 +23,7 @@ body {
 }
 
 body, input[text], button {
-  color: #888;
+  color: #364048;
   font-family: Cambria, Heorgia;
 }
 
@@ -25,6 +33,18 @@ ul {
   padding: 0;
 }
 
+button {
+  font-size: 10px;
+  color: #F8F9F9;
+
+  border: 1px solid #3671AB;
+  /*border-radius: 5%;*/
+  background-color: #3671AB;
+
+  height: 22px;
+}
+
 * {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #F8F9F9;
 }

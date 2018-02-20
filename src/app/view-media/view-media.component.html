@@ -1,5 +1,12 @@
-<ul class="media-view">
-  <li class="media-view-element" *ngFor="let mediaElement of mediaList$ | async">
-    {{ mediaElement.name }}
-  </li>
-</ul>
+<div class="view-media-container">
+  <div class="view-media-filter-container">
+    <button class="view-media-filter-button">Consumed</button>
+    <button class="view-media-filter-button">UnConsumed</button>
+  </div>
+
+  <ul class="view-media-list">
+    <li class="media-view-element" *ngFor="let mediaElement of mediaList$ | async">
+      {{ mediaElement.name }}
+    </li>
+  </ul>
+</div>
