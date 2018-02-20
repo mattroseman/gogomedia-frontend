@@ -1,5 +1,5 @@
 <ul class="media-view">
-  <li *ngFor="let mediaElement of media">
+  <li *ngFor="let mediaElement of mediaList$ | async">
     {{ mediaElement.name }}
   </li>
 </ul>

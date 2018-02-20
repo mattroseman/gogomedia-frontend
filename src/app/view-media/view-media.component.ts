@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { dinstinctUntilChanged } from 'rxjs/operators';
 
 import { MediaService } from '../media.service';
 
@@ -10,7 +12,7 @@ import { Media } from '../media';
   styleUrls: ['./view-media.component.css']
 })
 export class ViewMediaComponent implements OnInit {
-  media: Media[] = [];
+  mediaList$: Observable<Media[]>;
 
   constructor(private mediaService: MediaService) {}
 
@@ -19,7 +21,7 @@ export class ViewMediaComponent implements OnInit {
   }
 
   getMedia() {
-    this.mediaService.getMedia()
-      .subscribe((media: Media[]) => this.media = media);
+    this.mediaList$ = this.mediaService.mediaUpdates.asObservable();
+    this.mediaService.getMedia().subscribe();
   }
 }
