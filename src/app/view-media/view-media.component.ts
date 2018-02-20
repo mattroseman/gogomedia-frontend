@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { dinstinctUntilChanged } from 'rxjs/operators';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 import { MediaService } from '../media.service';
 
@@ -23,5 +23,9 @@ export class ViewMediaComponent implements OnInit {
   getMedia() {
     this.mediaList$ = this.mediaService.mediaUpdates.asObservable();
     this.mediaService.getMedia().subscribe();
+  }
+
+  delete(media: Media) {
+    this.mediaService.deleteMedia(media).subscribe();
   }
 }

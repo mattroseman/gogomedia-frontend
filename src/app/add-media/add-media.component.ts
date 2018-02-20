@@ -18,7 +18,7 @@ export class AddMediaComponent implements OnInit {
       return;
     }
 
-    this.mediaService.addMedia({name: mediaName, consumed: false}).subscribe();
+    this.mediaService.addMedia({'name': mediaName, 'consumed': false}).subscribe();
     // TODO take the new media item, pass it up to app.component, so it can update the appropriate
     // components
   }

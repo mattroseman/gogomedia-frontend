@@ -55,6 +55,21 @@ export class MediaService {
       );
   }
 
+  deleteMedia(media: Media): Observable<Media> {
+    const url = `${this.apiUrl}/user/${this.username}/media`;
+
+    // HttpClient delete method doesn't allow for a body, so a generic request is created
+    return this.http.request('delete', url, {body: media, headers: httpOptions.headers})
+      .pipe(
+        tap(_ => {
+          console.log(`deleted media with name: ${media.name}`)
+
+          this.getMedia().subscribe();
+        }),
+        catchError(this.handleError<any>(`deleteMedia`))
+      );
+  }
+
   private handleError<T>(operation='operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed with error:\n${error.message}`);
