@@ -1,7 +1,17 @@
 <div class="view-media-container">
   <div class="view-media-filter-container">
-    <button class="view-media-filter-button">Consumed</button>
-    <button class="view-media-filter-button">UnConsumed</button>
+    <div>
+      <label class="view-media-filter-toggle-button" [class.selected]="showConsumed">
+        <input type="radio" (click)="handleConsumedClick()"/>
+        Consumed
+      </label>
+    </div>
+    <div>
+      <label class="view-media-filter-toggle-button" [class.selected]="showUnconsumed">
+        <input type="radio" (click)="handleUnconsumedClick()"/>
+        UnConsumed
+      </label>
+    </div>
   </div>
 
   <ul class="view-media-list">

@@ -14,6 +14,11 @@ import { Media } from '../media';
 export class ViewMediaComponent implements OnInit {
   mediaList$: Observable<Media[]>;
 
+  // These variables can both be true, or one can be true
+  // but they can't both be false
+  showConsumed = true;
+  showUnconsumed = true;
+
   constructor(private mediaService: MediaService) {}
 
   ngOnInit() {
@@ -27,5 +32,13 @@ export class ViewMediaComponent implements OnInit {
 
   delete(media: Media) {
     this.mediaService.deleteMedia(media).subscribe();
+  }
+
+  handleConsumedClick() {
+    this.showConsumed = !this.showConsumed;
+  }
+
+  handleUnconsumedClick() {
+    this.showUnconsumed = !this.showUnconsumed;
   }
 }
