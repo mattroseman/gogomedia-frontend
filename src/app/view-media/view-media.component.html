@@ -16,11 +16,8 @@
 
   <ul class="view-media-list">
     <li *ngFor="let mediaElement of mediaList$ | async">
-      <div class="media-view-element"
-        *ngIf="(showConsumed && mediaElement.consumed) || (showUnconsumed && !mediaElement.consumed)"
-      >
-        <span class="media-view-element-name">{{ mediaElement.name }}</span>
-        <button class="media-view-element-delete" (click)="delete(mediaElement)">X</button>
+      <div *ngIf="(showConsumed && mediaElement.consumed) || (showUnconsumed && !mediaElement.consumed)">
+        <app-media-element [media]="mediaElement"></app-media-element>
       </div>
     </li>
   </ul>

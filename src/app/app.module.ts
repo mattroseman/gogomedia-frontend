@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { AddMediaComponent } from './add-media/add-media.component';
 import { ViewMediaComponent } from './view-media/view-media.component';
 import { MediaService } from './media.service';
+import { MediaElementComponent } from './view-media/media-element/media-element.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AddMediaComponent,
-    ViewMediaComponent
+    ViewMediaComponent,
+    MediaElementComponent
   ],
   imports: [
     BrowserModule,

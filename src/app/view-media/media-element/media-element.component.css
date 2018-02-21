@@ -1,0 +1,49 @@
+.media-view-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+
+  border: 1px solid #3671AB;
+
+  background-color: #FFFFFF;
+
+  margin: 3px;
+
+  min-height: 25px;
+}
+
+.media-view-element-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  background-color: #FFFFFF;
+
+  text-align: center;
+
+  padding: 5px;
+
+  width: 250px;
+}
+
+.media-view-element-delete {
+  font-family: sans-serif;
+  font-size: 13px;
+  color: #3671AB;
+
+  cursor: pointer;
+
+  background-color: #FFFFFF;
+
+  border: none;
+  border-left: 1px solid #3671AB;
+
+  width: 30px;
+
+  transition-duration: 0.4s;
+}
+
+.media-view-element-delete:hover {
+  background-color: #A3CAEF;
+}
