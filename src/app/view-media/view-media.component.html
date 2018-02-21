@@ -1,3 +1,4 @@
+<!--
 <div class="view-media-container">
   <div class="view-media-filter-container">
     <div>
@@ -21,4 +22,29 @@
       </div>
     </li>
   </ul>
+</div>
+-->
+
+<div class="view-media-container">
+  <div class="view-media-unconsumed-container">
+    <h3>Unconsumed Media</h3>
+    <ul class="view-media-list">
+      <li *ngFor="let mediaElement of mediaList$ | async">
+        <div *ngIf="!mediaElement.consumed">
+          <app-media-element [media]="mediaElement"></app-media-element>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="view-media-consumed-container">
+    <h3>Consumed Media</h3>
+    <ul class="view-media-list">
+      <li *ngFor="let mediaElement of mediaList$ | async">
+        <div *ngIf="mediaElement.consumed">
+          <app-media-element [media]="mediaElement"></app-media-element>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
