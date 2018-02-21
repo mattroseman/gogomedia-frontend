@@ -39,6 +39,20 @@ export class MediaService {
       );
   }
 
+  updateMedia(media: Media): Observable<Media> {
+    const url = `${this.apiUrl}/user/${this.username}/media`;
+
+    return this.http.put<Media>(url, media, httpOptions)
+      .pipe(
+        tap((media: Media) => {
+          console.log(`updated media with name: ${media.name}`)
+
+          this.getMedia().subscribe();
+        }),
+        catchError(this.handleError<Media>(`updateMedia`))
+      );
+  }
+
   getMedia(): Observable<Media[]> {
     const url = `${this.apiUrl}/user/${this.username}/media`;
 

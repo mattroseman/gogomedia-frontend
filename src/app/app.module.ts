@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { DndListModule } from 'ngx-drag-and-drop-lists';
 
 import { AppComponent } from './app.component';
 import { AddMediaComponent } from './add-media/add-media.component';
@@ -18,7 +19,8 @@ import { MediaElementComponent } from './view-media/media-element/media-element.
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    DndListModule
   ],
   providers: [MediaService],
   bootstrap: [AppComponent]
