@@ -18,6 +18,7 @@
   margin-top: 20px;
   padding: 5px;
 
+  min-width: 300px;
   /*width: 400px;*/
 }
 
@@ -32,6 +33,7 @@
   margin-left: 10px;
   padding: 5px;
 
+  min-width: 300px;
   /*width: 400px;*/
 }
 
@@ -87,6 +89,8 @@ input[type="radio"] {
   flex-direction: column;
   align-items: center;
 
+  min-width: 150px;
+  min-height: 20px;
   /*width: 150px;*/
 }
 

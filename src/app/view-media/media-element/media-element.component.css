@@ -13,6 +13,10 @@
   min-height: 25px;
 }
 
+.media-view-element.preview {
+  border: none;
+}
+
 .media-view-element-name {
   display: flex;
   flex-direction: row;

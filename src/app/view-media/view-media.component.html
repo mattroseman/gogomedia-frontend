@@ -27,17 +27,20 @@
 -->
 
 <div class="view-media-container">
+  <div class="dndPlaceholder" #placeholder>
+    <app-media-element></app-media-element>
+  </div>
   <div class="view-media-unconsumed-container">
     <h3>Unconsumed Media</h3>
     <div class="view-media-list"
       [dndList]
       [dndPlaceholder]="placeholder"
-      [dndModel]="mediaList$ | async"
+      [dndModel]="unconsumedMediaList"
     >
-      <div *ngFor="let mediaElement of mediaList$ | async">
+      <div *ngFor="let mediaElement of unconsumedMediaList">
         <div *ngIf="!mediaElement.consumed"
           [dndType]="'mediaElement'"
-          (dndMoved)="handleElementDrag(mediaElement)"
+          (dndMoved)="handleElementDrag(mediaElement, unconsumedMediaList)"
           [dndDraggable]
           [dndObject]="mediaElement"
         >
@@ -52,12 +55,12 @@
     <div class="view-media-list"
       [dndList]
       [dndPlaceholder]="placeholder"
-      [dndModel]="mediaList$ | async"
+      [dndModel]="consumedMediaList"
     >
-      <div *ngFor="let mediaElement of mediaList$ | async">
+      <div *ngFor="let mediaElement of consumedMediaList">
         <div *ngIf="mediaElement.consumed"
           [dndType]="'mediaElement'"
-          (dndMoved)="handleElementDrag(mediaElement)"
+          (dndMoved)="handleElementDrag(mediaElement, consumedMediaList)"
           [dndDraggable]
           [dndObject]="mediaElement"
         >

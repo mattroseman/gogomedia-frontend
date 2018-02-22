@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 
 import { MediaService } from '../media.service';
 
@@ -12,7 +12,8 @@ import { Media } from '../media';
   styleUrls: ['./view-media.component.css']
 })
 export class ViewMediaComponent implements OnInit {
-  mediaList$: Observable<Media[]>;
+  consumedMediaList: Media[];
+  unconsumedMediaList: Media[];
 
   constructor(private mediaService: MediaService) {}
 
@@ -21,7 +22,12 @@ export class ViewMediaComponent implements OnInit {
   }
 
   getMedia() {
-    this.mediaList$ = this.mediaService.mediaUpdates.asObservable();
+    this.mediaService.mediaUpdates
+      .subscribe((media: Media[]) => {
+        this.consumedMediaList = media.filter((media: Media) => {return media.consumed});
+        this.unconsumedMediaList = media.filter((media: Media) => {return !media.consumed});
+      });
+
     this.mediaService.getMedia().subscribe();
   }
 
@@ -29,8 +35,8 @@ export class ViewMediaComponent implements OnInit {
     this.mediaService.deleteMedia(media).subscribe();
   }
 
-  handleElementDrag(mediaElement: Media): void {
-    this.mediaService.updateMedia({ 'name': mediaElement.name, 'consumed': !mediaElement.consumed ]).subscribe();
-    console.log(`${mediaElement.name} moved`);
+  handleElementDrag(mediaElement: Media, currentList: Media[]): void {
+    currentList.splice(currentList.indexOf(mediaElement), 1);
+    this.mediaService.updateMedia({ 'name': mediaElement.name, 'consumed': !mediaElement.consumed }).subscribe();
   }
 }

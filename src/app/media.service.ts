@@ -21,6 +21,8 @@ export class MediaService {
   // when media elements are added/deleted/updated mediaUpdates publishes the new list of
   // media elements
   mediaUpdates = new Subject<Media[]>();
+  // mediaUpdatesConsumed = new Subject<Media[]>();
+  // mediaUpdatesUnconsumed = new Subject<Media[]>();
 
   constructor(private http: HttpClient) { }
 
@@ -64,6 +66,8 @@ export class MediaService {
           // Add the new list of media elements to the subject mediaUpdates so any components
           // listening can update themselves
           this.mediaUpdates.next(media);
+          // this.mediaUpdatesConsumed.next(media.filter((media: Media) => { return media.consumed }));
+          // this.mediaUpdatesUnconsumed.next(media.filter((media: Media) => { return !media.consumed }));
         }),
         catchError(this.handleError<Media[]>(`getMedia`, []))
       );
