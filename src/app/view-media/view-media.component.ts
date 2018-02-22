@@ -24,6 +24,7 @@ export class ViewMediaComponent implements OnInit {
   getMedia() {
     this.mediaService.mediaUpdates
       .subscribe((media: Media[]) => {
+        // TODO manually remove deleted elements, and added elements to end, but mantain order from last instance
         this.consumedMediaList = media.filter((media: Media) => {return media.consumed});
         this.unconsumedMediaList = media.filter((media: Media) => {return !media.consumed});
       });
@@ -37,6 +38,9 @@ export class ViewMediaComponent implements OnInit {
 
   handleElementDrag(mediaElement: Media, currentList: Media[]): void {
     currentList.splice(currentList.indexOf(mediaElement), 1);
-    this.mediaService.updateMedia({ 'name': mediaElement.name, 'consumed': !mediaElement.consumed }).subscribe();
+    this.mediaService.updateMedia({ 
+      'name': mediaElement.name, 
+      'consumed': this.consumedMediaList.some((media: Media) => {return media.name === mediaElement.name;})
+    }).subscribe();
   }
 }
