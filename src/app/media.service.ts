@@ -8,34 +8,64 @@ import { catchError, tap } from 'rxjs/operators';
 import { Media } from './media';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 }
 
 @Injectable()
 export class MediaService {
   private apiUrl = 'http://localhost:5000';
   // TODO this is for testing, change when implementing login code
-  private username = 'matt'
+  private username = 'matt';
+  private authToken = '';
 
   // mediaUpdates keeps track of the current state of media elements for this user
   // when media elements are added/deleted/updated mediaUpdates publishes the new list of
   // media elements
   mediaUpdates = new Subject<Media[]>();
-  // mediaUpdatesConsumed = new Subject<Media[]>();
-  // mediaUpdatesUnconsumed = new Subject<Media[]>();
 
   constructor(private http: HttpClient) { }
+
+  login(username: string, password: string): Observable<any> {
+    this.username = username;
+    const url = `${this.apiUrl}/login`;
+
+    return this.http.post(url, {'username': username, 'password': password}, {headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })})
+      .pipe(
+        tap((response: any) => {
+          if (response.success) {
+            console.log(`logged in as user: ${username}`);
+            this.authToken = response.auth_token;
+
+            this.getMedia().subscribe();
+          } else {
+            console.log(`failed to log in as user: ${username}`);
+            console.log(response.message);
+          }
+        }),
+        catchError(this.handleError<any>(`login`))
+      );
+  }
 
   addMedia(media: Media): Observable<Media> {
     const url = `${this.apiUrl}/user/${this.username}/media`;
 
-    return this.http.put<Media>(url, media, httpOptions)
+    return this.http.put<Media>(url, media, {headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + this.authToken
+    })})
       .pipe(
-        tap((media: Media) => {
-          console.log(`added media with name: ${media.name}`)
+        tap((response: any) => {
+          if (response.success) {
+            console.log(`added media with name: ${response.data.name}`)
 
-          // call getMedia which will update mediaUpdates subject
-          this.getMedia().subscribe();
+            // call getMedia which will update mediaUpdates subject
+            this.getMedia().subscribe();
+          } else {
+            console.log(response.message);
+          }
+
         }),
         catchError(this.handleError<Media>(`addMedia`))
       );
@@ -44,12 +74,19 @@ export class MediaService {
   updateMedia(media: Media): Observable<Media> {
     const url = `${this.apiUrl}/user/${this.username}/media`;
 
-    return this.http.put<Media>(url, media, httpOptions)
+    return this.http.put<Media>(url, media, {headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + this.authToken
+    })})
       .pipe(
-        tap((media: Media) => {
-          console.log(`updated media with name: ${media.name}`)
+        tap((response: any) => {
+          if (response.success) {
+            console.log(`updated media with name: ${response.data.name}`)
 
-          this.getMedia().subscribe();
+            this.getMedia().subscribe();
+          } else {
+            console.log(response.message);
+          }
         }),
         catchError(this.handleError<Media>(`updateMedia`))
       );
@@ -58,16 +95,20 @@ export class MediaService {
   getMedia(): Observable<Media[]> {
     const url = `${this.apiUrl}/user/${this.username}/media`;
 
-    return this.http.get<Media[]>(url)
+    return this.http.get<Media[]>(url, {headers: new HttpHeaders({
+      'Authorization': 'JWT ' + this.authToken
+    })})
       .pipe(
-        tap((media: Media[]) => {
-          console.log(`got list of media`);
+        tap((response: any) => {
+          if (response.success) {
+            console.log(`got list of media`);
 
-          // Add the new list of media elements to the subject mediaUpdates so any components
-          // listening can update themselves
-          this.mediaUpdates.next(media);
-          // this.mediaUpdatesConsumed.next(media.filter((media: Media) => { return media.consumed }));
-          // this.mediaUpdatesUnconsumed.next(media.filter((media: Media) => { return !media.consumed }));
+            // Add the new list of media elements to the subject mediaUpdates so any components
+            // listening can update themselves
+            this.mediaUpdates.next(response.data);
+          } else {
+            console.log(response.message);
+          }
         }),
         catchError(this.handleError<Media[]>(`getMedia`, []))
       );
@@ -77,7 +118,10 @@ export class MediaService {
     const url = `${this.apiUrl}/user/${this.username}/media`;
 
     // HttpClient delete method doesn't allow for a body, so a generic request is created
-    return this.http.request('delete', url, {body: media, headers: httpOptions.headers})
+    return this.http.request('delete', url, {body: media, headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + this.authToken
+    })})
       .pipe(
         tap(_ => {
           console.log(`deleted media with name: ${media.name}`)

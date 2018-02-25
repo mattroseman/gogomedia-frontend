@@ -18,6 +18,7 @@ export class ViewMediaComponent implements OnInit {
   constructor(private mediaService: MediaService) {}
 
   ngOnInit() {
+    this.mediaService.login('matt', 'P@ssw0rd').subscribe();
     this.getMedia();
   }
 
