@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 
-import { MediaService } from '../media.service';
+import { ApiService } from '../api.service';
 
 import { Media } from '../media';
 
@@ -15,31 +15,31 @@ export class ViewMediaComponent implements OnInit {
   consumedMediaList: Media[];
   unconsumedMediaList: Media[];
 
-  constructor(private mediaService: MediaService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.mediaService.login('matt', 'P@ssw0rd').subscribe();
+    this.apiService.login('matt', 'P@ssw0rd').subscribe();
     this.getMedia();
   }
 
   getMedia() {
-    this.mediaService.mediaUpdates
+    this.apiService.mediaUpdates
       .subscribe((media: Media[]) => {
         // TODO manually remove deleted elements, and added elements to end, but mantain order from last instance
         this.consumedMediaList = media.filter((media: Media) => {return media.consumed});
         this.unconsumedMediaList = media.filter((media: Media) => {return !media.consumed});
       });
 
-    this.mediaService.getMedia().subscribe();
+    this.apiService.getMedia().subscribe();
   }
 
   delete(media: Media) {
-    this.mediaService.deleteMedia(media).subscribe();
+    this.apiService.deleteMedia(media).subscribe();
   }
 
   handleElementDrag(mediaElement: Media, currentList: Media[]): void {
     currentList.splice(currentList.indexOf(mediaElement), 1);
-    this.mediaService.updateMedia({ 
+    this.apiService.updateMedia({ 
       'name': mediaElement.name, 
       'consumed': this.consumedMediaList.some((media: Media) => {return media.name === mediaElement.name;})
     }).subscribe();

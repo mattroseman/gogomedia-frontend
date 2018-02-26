@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ApiService } from './api.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   title = 'GoGoMedia';
+
+  constructor(private apiService: ApiService) {}
 }

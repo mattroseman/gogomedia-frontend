@@ -7,23 +7,21 @@ import { catchError, tap } from 'rxjs/operators';
 
 import { Media } from './media';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-}
-
 @Injectable()
-export class MediaService {
+export class ApiService {
   private apiUrl = 'http://localhost:5000';
   // TODO this is for testing, change when implementing login code
   private username = 'matt';
   private authToken = '';
+
+  public loggedIn = false;
 
   // mediaUpdates keeps track of the current state of media elements for this user
   // when media elements are added/deleted/updated mediaUpdates publishes the new list of
   // media elements
   mediaUpdates = new Subject<Media[]>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
     this.username = username;
@@ -37,6 +35,7 @@ export class MediaService {
           if (response.success) {
             console.log(`logged in as user: ${username}`);
             this.authToken = response.auth_token;
+            this.loggedIn = true;
 
             this.getMedia().subscribe();
           } else {

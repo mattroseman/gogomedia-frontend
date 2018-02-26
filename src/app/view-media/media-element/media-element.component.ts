@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { MediaService } from '../../media.service';
+import { ApiService } from '../../api.service';
 
 import { Media } from '../../media';
 
@@ -12,12 +12,12 @@ import { Media } from '../../media';
 export class MediaElementComponent implements OnInit {
   @Input('media') mediaElement: Media;
 
-  constructor(private mediaService: MediaService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
   }
 
   delete(media: Media) {
-    this.mediaService.deleteMedia(media).subscribe();
+    this.apiService.deleteMedia(media).subscribe();
   }
 }

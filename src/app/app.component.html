@@ -2,6 +2,11 @@
   <div class="title">
     <h1>{{ title }}</h1>
   </div>
-  <app-add-media></app-add-media>
-  <app-view-media></app-view-media>
+  <div *ngIf="this.apiService.loggedIn">
+    <app-add-media></app-add-media>
+    <app-view-media></app-view-media>
+  </div>
+  <div *ngIf="!this.apiService.loggedIn">
+    <app-login></app-login>
+  </div>
 </div>
