@@ -44,3 +44,15 @@
 
   height: 30px;
 }
+
+.input-and-alerts-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert {
+  color: red;
+  font-size: 10px;
+
+  margin-top: 5px;
+}
