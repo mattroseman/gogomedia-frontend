@@ -4,5 +4,17 @@
   align-items: center;
 }
 
+.site-header {
+  display: flex;
+  flex-direction: row;
+  align-self: stretch;
+  justify-content: flex-end;
+}
+
+.signup-button {
+  font-size: 18px;
+  height: 30px;
+}
+
 .title {
 }

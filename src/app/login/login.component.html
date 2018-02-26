@@ -1,7 +1,7 @@
 <div class="login-container">
   <h2>Login</h2>
-  <form (ngSubmit)="login()" 
-    class="login-form" 
+  <form (ngSubmit)="login()"
+    class="login-form"
   >
     <div class="form-group">
       <label for="username" class="login-label">Username:</label>
@@ -11,7 +11,7 @@
           id="username"
           placeholder="username"
           [(ngModel)]="user.username"
-          name="username" 
+          name="username"
           required
           #username="ngModel"
         >
@@ -32,7 +32,7 @@
           id="password"
           placeholder="password"
           [(ngModel)]="user.password"
-          name="password" 
+          name="password"
           required
           minlength="4"
           #password="ngModel"

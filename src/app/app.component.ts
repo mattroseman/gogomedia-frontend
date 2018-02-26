@@ -11,4 +11,9 @@ export class AppComponent {
   title = 'GoGoMedia';
 
   constructor(private apiService: ApiService) {}
+
+  signup() {
+    // open sign-up component
+    console.log('test');
+  }
 }
