@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { ApiService } from '../api.service';
 
@@ -15,10 +16,14 @@ export class ViewMediaComponent implements OnInit {
   consumedMediaList: Media[];
   unconsumedMediaList: Media[];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit() {
-    this.apiService.login('matt', 'P@ssw0rd').subscribe();
+    // if the user isn't logged in yet, redirect to login page
+    if (!this.apiService.loggedIn) {
+      this.router.navigate(['/login']);
+    }
+
     this.getMedia();
   }
 

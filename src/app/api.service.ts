@@ -11,17 +11,20 @@ import { Media } from './media';
 export class ApiService {
   private apiUrl = 'http://localhost:5000';
   // TODO this is for testing, change when implementing login code
-  private username = 'matt';
+  private username = '';
   private authToken = '';
 
-  public loggedIn = false;
+  public loggedIn;
 
   // mediaUpdates keeps track of the current state of media elements for this user
   // when media elements are added/deleted/updated mediaUpdates publishes the new list of
   // media elements
   mediaUpdates = new Subject<Media[]>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log(this.authToken);
+    this.loggedIn = false;
+  }
 
   login(username: string, password: string): Observable<any> {
     this.username = username;
@@ -39,11 +42,29 @@ export class ApiService {
 
             this.getMedia().subscribe();
           } else {
+            this.loggedIn = false;
+            this.authToken = '';
             console.log(`failed to log in as user: ${username}`);
             console.log(response.message);
           }
         }),
         catchError(this.handleError<any>(`login`))
+      );
+  }
+
+  logout(): Observable<any> {
+    const url = `${this.apiUrl}/logout`;
+
+    return this.http.get<any>(url, {headers: new HttpHeaders({
+      'Authorization': 'JWT ' + this.authToken
+    })})
+      .pipe(
+        tap((response: any) => {
+          console.log(`logged out`);
+          this.authToken = '';
+          this.loggedIn = false;
+        }),
+        catchError(this.handleError<any>(`logout`))
       );
   }
 

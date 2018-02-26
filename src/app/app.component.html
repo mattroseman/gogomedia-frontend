@@ -1,3 +1,4 @@
+<!--
 <div class="site-container">
   <div class="site-header">
     <button class="signup-button" (click)="signup()">
@@ -8,10 +9,31 @@
     <h1>{{ title }}</h1>
   </div>
   <div *ngIf="this.apiService.loggedIn">
-    <app-add-media></app-add-media>
     <app-view-media></app-view-media>
   </div>
   <div *ngIf="!this.apiService.loggedIn">
     <app-login></app-login>
   </div>
+</div>
+-->
+<div class="site-container">
+  <div class="site-header">
+    <div *ngIf="!this.apiService.loggedIn" class="header-left-container">
+      <button class="signup-button" routerLink="/signup">
+        Sign Up
+      </button>
+      <button class="login-button" routerLink="/login">
+        Log In
+      </button>
+    </div>
+    <div *ngIf="this.apiService.loggedIn" class="header-left-container">
+      <button class="logout-button" (click)="logout()" routerLink="/login">
+        Log Out
+      </button>
+    </div>
+  </div>
+  <div class="title">
+    <h1>{{ title }}</h1>
+  </div>
+  <router-outlet></router-outlet>
 </div>

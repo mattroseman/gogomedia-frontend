@@ -12,8 +12,7 @@ export class AppComponent {
 
   constructor(private apiService: ApiService) {}
 
-  signup() {
-    // open sign-up component
-    console.log('test');
+  logout() {
+    this.apiService.logout().subscribe();
   }
 }

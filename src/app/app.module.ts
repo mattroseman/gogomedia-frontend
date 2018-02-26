@@ -7,10 +7,12 @@ import { DndListModule } from 'ngx-drag-and-drop-lists';
 import { ApiService } from './api.service';
 
 import { AppComponent } from './app.component';
-import { AddMediaComponent } from './add-media/add-media.component';
+import { AddMediaComponent } from './view-media/add-media/add-media.component';
 import { ViewMediaComponent } from './view-media/view-media.component';
 import { MediaElementComponent } from './view-media/media-element/media-element.component';
 import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './app-routing.module';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -19,13 +21,15 @@ import { LoginComponent } from './login/login.component';
     AddMediaComponent,
     ViewMediaComponent,
     MediaElementComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    DndListModule
+    DndListModule,
+    AppRoutingModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

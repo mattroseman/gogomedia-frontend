@@ -11,7 +11,22 @@
   justify-content: flex-end;
 }
 
-.signup-button {
+.header-left-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.signup-button .login-button {
+  font-size: 18px;
+
+  min-height: 22px;
+}
+
+.login-button {
+  margin-left: 10px;
+}
+
+.logout-button {
   font-size: 18px;
   height: 30px;
 }

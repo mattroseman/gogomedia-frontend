@@ -2,6 +2,7 @@
   <h2>Login</h2>
   <form (ngSubmit)="login()"
     class="login-form"
+    #loginForm="ngForm"
   >
     <div class="form-group">
       <label for="username" class="login-label">Username:</label>
@@ -49,6 +50,11 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="login-submit">Submit</button>
+    <button type="submit"
+      class="login-submit" 
+      [disabled]="!loginForm.form.valid"
+    >
+      Submit
+    </button>
   </form>
 </div>

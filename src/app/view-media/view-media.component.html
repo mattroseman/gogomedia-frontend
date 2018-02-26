@@ -1,31 +1,4 @@
-<div #placeholder></div>
-<!--
-<div class="view-media-container">
-  <div class="view-media-filter-container">
-    <div>
-      <label class="view-media-filter-toggle-button" [class.selected]="showConsumed">
-        <input type="radio" (click)="handleConsumedClick()"/>
-        Consumed
-      </label>
-    </div>
-    <div>
-      <label class="view-media-filter-toggle-button" [class.selected]="showUnconsumed">
-        <input type="radio" (click)="handleUnconsumedClick()"/>
-        UnConsumed
-      </label>
-    </div>
-  </div>
-
-  <ul class="view-media-list">
-    <li *ngFor="let mediaElement of mediaList$ | async">
-      <div *ngIf="(showConsumed && mediaElement.consumed) || (showUnconsumed && !mediaElement.consumed)">
-        <app-media-element [media]="mediaElement"></app-media-element>
-      </div>
-    </li>
-  </ul>
-</div>
--->
-
+<app-add-media></app-add-media>
 <div class="view-media-container">
   <div class="dndPlaceholder" #placeholder>
     <app-media-element></app-media-element>
