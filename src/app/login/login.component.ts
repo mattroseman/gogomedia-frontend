@@ -25,9 +25,11 @@ export class LoginComponent implements OnInit {
     // TODO validate the username and password more here
     if (this.user.username.trim() && this.user.password.trim()) {
       this.apiService.login(this.user.username, this.user.password)
-        .subscribe(_ => {
-          if (this.apiService.loggedIn) {
+        .subscribe((response: string) => {
+          if (response === 'success') {
             this.router.navigate(['/media']);
+          } else {
+            // TODO display this error message on the page
           }
         });
     }
