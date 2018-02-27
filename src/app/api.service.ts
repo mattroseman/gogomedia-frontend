@@ -26,6 +26,25 @@ export class ApiService {
     this.loggedIn = false;
   }
 
+  register(username: string, password: string): Observable<any> {
+    this.username = username;
+    const url = `${this.apiUrl}/register`;
+
+    return this.http.post(url, {'username': username, 'password': password}, {headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })})
+      .pipe(
+        tap((response: any) => {
+          if (response.success) {
+            console.log(`user: ${username} was successfully registered`);
+          } else {
+            console.log(response.message);
+          }
+        }),
+        catchError(this.handleError<any>(`login`))
+      );
+  }
+
   login(username: string, password: string): Observable<any> {
     this.username = username;
     const url = `${this.apiUrl}/login`;

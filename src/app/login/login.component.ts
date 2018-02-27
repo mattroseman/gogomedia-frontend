@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    // TODO validate the username and password here
+    // TODO validate the username and password more here
     if (this.user.username.trim() && this.user.password.trim()) {
       this.apiService.login(this.user.username, this.user.password)
         .subscribe(_ => {
