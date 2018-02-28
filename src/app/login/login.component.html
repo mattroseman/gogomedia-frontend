@@ -1,57 +1,74 @@
 <div class="login-container">
   <h2>Login</h2>
+
+  <div class="alerts-container">
+    <div *ngIf="username.invalid && username.touched"
+      class="alert"
+    >
+      <div *ngIf="username.errors.required">
+        * username is required
+      </div>
+    </div>
+
+    <div *ngIf="password.invalid && password.touched"
+      class="alert"
+    >
+      <div *ngIf="password.errors.required">
+        * password is required
+      </div>
+      <div *ngIf="password.errors.minlength">
+        * password must be at least 4 characters
+      </div>
+    </div>
+
+    <div *ngIf="incorrectPassword && password.pristine"
+      class="alert"
+    >
+      * incorrect password
+    </div>
+
+    <div *ngIf="userDoesntExist && username.pristine"
+      class="alert"
+    >
+      * user doesn't exist
+    </div>
+  </div>
+
   <form (ngSubmit)="login()"
     class="login-form"
     #loginForm="ngForm"
   >
     <div class="form-group">
       <label for="username" class="login-label">Username:</label>
-      <div class="input-and-alerts-container">
-        <input type="text"
-          class="login-input"
-          id="username"
-          placeholder="username"
-          [(ngModel)]="user.username"
-          name="username"
-          required
-          #username="ngModel"
-        >
-        <div *ngIf="username.invalid && (username.dirty || username.touched)"
-          class="alert"
-        >
-          <div *ngIf="username.errors.required">
-            Username is required.
-          </div>
-        </div>
-      </div>
+      <input type="text"
+        class="login-input"
+        [class.invalid]="userDoesntExist"
+        id="username"
+        placeholder="username"
+        [(ngModel)]="user.username"
+        name="username"
+        required
+        #username="ngModel"
+      >
     </div>
+
     <div class="form-group">
       <label for="password" class="login-label">Password:</label>
-      <div class="input-and-alerts-container">
-        <input type="password"
-          class="login-input"
-          id="password"
-          placeholder="password"
-          [(ngModel)]="user.password"
-          name="password"
-          required
-          minlength="4"
-          #password="ngModel"
-        >
-        <div *ngIf="password.invalid && (password.dirty || password.touched)"
-          class="alert"
-        >
-          <div *ngIf="password.errors.required">
-            Password is required.
-          </div>
-          <div *ngIf="password.errors.minlength">
-            Password must be at least 4 characters.
-          </div>
-        </div>
-      </div>
+      <input type="password"
+        class="login-input"
+        [class.invalid]="incorrectPassword"
+        id="password"
+        placeholder="password"
+        [(ngModel)]="user.password"
+        name="password"
+        required
+        minlength="4"
+        #password="ngModel"
+      >
     </div>
+
     <button type="submit"
-      class="login-submit" 
+      class="login-submit"
       [disabled]="!loginForm.form.valid"
     >
       Submit
