@@ -29,6 +29,18 @@
       </div>
       <!-- TODO add password confirm must match password, but only after submit -->
     </div>
+
+    <div *ngIf="passwordsDontMatch && password.pristine && passwordConfirm.pristine" 
+      class="alert"
+    >
+      passwords don't match
+    </div>
+
+    <div *ngIf="usernameTaken && username.pristine"
+      class="alert"
+    >
+      username is taken
+    </div>
   </div>
 
   <form (ngSubmit)="signup()"
@@ -77,7 +89,7 @@
     </div>
 
     <button type="submit"
-      class="signup-submit" 
+      class="signup-submit"
       [disabled]="!signupForm.form.valid"
     >
       Submit
