@@ -6,7 +6,7 @@
       class="alert"
     >
       <div *ngIf="username.errors.required">
-        username is required
+        * username is required
       </div>
     </div>
 
@@ -14,18 +14,18 @@
       class="alert"
     >
       <div *ngIf="password.errors.required">
-        password is required
+        * password is required
       </div>
       <div *ngIf="password.errors.minlength">
-        password must be at least 4 characters
+        * password must be at least 4 characters
       </div>
     </div>
 
     <div *ngIf="passwordConfirm.invalid && passwordConfirm.touched"
       class="alert"
     >
-      <div *ngIf="password.errors.required">
-        password confirmation is required
+      <div *ngIf="passwordConfirm.errors.required">
+        * password confirmation is required
       </div>
       <!-- TODO add password confirm must match password, but only after submit -->
     </div>
@@ -33,13 +33,13 @@
     <div *ngIf="passwordsDontMatch && password.pristine && passwordConfirm.pristine" 
       class="alert"
     >
-      passwords don't match
+      * passwords don't match
     </div>
 
     <div *ngIf="usernameTaken && username.pristine"
       class="alert"
     >
-      username is taken
+      * username is taken
     </div>
   </div>
 
@@ -51,6 +51,7 @@
       <label for="username" class="signup-label">Username:</label>
       <input type="text"
         class="signup-input"
+        [class.invalid]="usernameTaken"
         id="username"
         placeholder="username"
         [(ngModel)]="user.username"
@@ -64,6 +65,7 @@
       <label for="password" class="signup-label">Password:</label>
       <input type="password"
         class="signup-input"
+        [class.invalid]="passwordsDontMatch"
         id="password"
         placeholder="password"
         [(ngModel)]="user.password"
@@ -77,14 +79,15 @@
     <div class="form-group">
       <label for="passwordConfirm" class="signup-label">Confirm Password:</label>
       <input type="password"
-         class="signup-input"
-         id="passwordConfirm"
-         placeholder="confirm password"
-         [(ngModel)]="confirmedPassword"
-         name="passwordConfirm"
-         required
-         minlength="4"
-         #passwordConfirm="ngModel"
+        class="signup-input"
+        [class.invalid]="passwordsDontMatch"
+        id="passwordConfirm"
+        placeholder="confirm password"
+        [(ngModel)]="confirmedPassword"
+        name="passwordConfirm"
+        required
+        minlength="4"
+        #passwordConfirm="ngModel"
       >
     </div>
 

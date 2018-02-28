@@ -35,8 +35,13 @@
 }
 
 .signup-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 10px;
+
   height: 20px;
-  width: 100px;
+  width: 150px;
 }
 
 .signup-input {
@@ -49,6 +54,10 @@
   padding-left: 5px;
 
   height: 25px;
+}
+
+.signup-input.ng-touched.ng-invalid, .signup-input.ng-pristine.invalid{
+  border: 1px solid red;
 }
 
 .signup-submit {

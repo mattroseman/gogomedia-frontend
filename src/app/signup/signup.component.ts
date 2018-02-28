@@ -31,6 +31,9 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
+  /*
+  markFormPristine updates the control status of form elements without changing the current value
+   */
   private markFormPristine(form: FormGroup | NgForm): void {
     Object.keys(form.controls).forEach(control => {
       form.controls[control].markAsPristine();
@@ -38,7 +41,6 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    // TODO validate the username and password more here
     this.passwordsDontMatch = false;
     this.usernameTaken = false;
     this.markFormPristine(this.signupForm);
@@ -49,18 +51,26 @@ export class SignupComponent implements OnInit {
     }
 
     if (this.user.username.trim() && this.user.password.trim()) {
+      // Register user
       this.apiService.register(this.user.username, this.user.password)
         .subscribe((response: string) => {
           if (response === 'success') {
+            // Login user
             this.apiService.login(this.user.username, this.user.password)
-              .subscribe(_ => {
-                if (this.apiService.loggedIn) {
+              .subscribe((response: string) => {
+                if (response === 'success') {
                   this.router.navigate(['/media']);
+                } else {
+                  // TODO idk what could go wrong here, but put in some way to handle it
+                  // probably have user signup again?, or take user to login page directly
                 }
               });
           } else {
             if (response === 'username taken') {
               this.usernameTaken = true;
+            } else {
+              // TODO idk what could go wrong here, but if this is hit probably have user signup again?
+              // probalby just say something wen't wrong please try again
             }
           }
         });
