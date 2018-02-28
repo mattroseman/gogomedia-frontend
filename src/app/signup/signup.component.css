@@ -4,6 +4,20 @@
   align-items: center;
 }
 
+.alerts-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.alert {
+  color: red;
+  font-size: 10px;
+
+  margin-top: 5px;
+}
+
 .signup-form {
   display: flex;
   flex-direction: column;
@@ -48,11 +62,4 @@
 .input-and-alerts-container {
   display: flex;
   flex-direction: column;
-}
-
-.alert {
-  color: red;
-  font-size: 10px;
-
-  margin-top: 5px;
 }
