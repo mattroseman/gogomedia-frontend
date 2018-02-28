@@ -43,6 +43,7 @@ export class ApiService {
   @return: an observable with a type string that will be 'success' or an error message
    */
   register(username: string, password: string): Observable<string> {
+    // TODO hash this password
     const url = `${apiUrl}/register`;
     const body = {
       'username': username,
@@ -69,6 +70,7 @@ export class ApiService {
   @return: an observable with a type string that will be 'success' or an error message
    */
   login(username: string, password: string): Observable<string> {
+    // TODO hash this password
     const url = `${apiUrl}/login`;
     const body = {
       'username': username,

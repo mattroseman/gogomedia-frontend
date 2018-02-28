@@ -11,12 +11,16 @@ import { ApiService, ApiResponse } from '../api.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  user: User = {
-    username: "",
-    password: ""
-  }
+  user: User;
+  confirmedPassword: string;
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router) {
+    this.user = {
+      username: '',
+      password: ''
+    };
+    this.confirmedPassword = '';
+  }
 
   ngOnInit() {
   }
