@@ -17,5 +17,21 @@
   width: 200px;
 }
 
+.add-media-select {
+  border: 1px solid #364048;
+
+  font-size: 15px;
+
+  height: 20px;
+
+  margin-right: 10px;
+}
+
+.add-media-select-option {
+  font-size: 15px;
+
+  height: 20px;
+}
+
 .add-media-button {
 }

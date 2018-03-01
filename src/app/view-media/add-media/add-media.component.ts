@@ -10,14 +10,13 @@ import { Media } from '../../media';
   styleUrls: ['./add-media.component.css']
 })
 export class AddMediaComponent implements OnInit {
-  media: Media;
+  media: Media = {
+    name: '',
+    medium: 'other'
+  };
 
   constructor(private apiService: ApiService) {
-    this.media = {
-      name: '',
-      consumed: false,
-      medium: ''
-    }
+    console.log(this.media.medium);
   }
 
   ngOnInit() {
