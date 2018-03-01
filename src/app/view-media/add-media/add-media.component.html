@@ -1,4 +1,4 @@
 <div class="add-media-container">
-  <input class="add-media-input" #newMedia>
-  <button class="add-media-button" (click)="add(newMedia.value); newMedia.value = '';">Add</button>
+  <input class="add-media-input" [(ngModel)]="media.name">
+  <button class="add-media-button" (click)="add();">Add</button>
 </div>

@@ -2,24 +2,32 @@ import { Component, OnInit } from '@angular/core';
 
 import { ApiService } from '../../api.service';
 
+import { Media } from '../../media';
+
 @Component({
   selector: 'app-add-media',
   templateUrl: './add-media.component.html',
   styleUrls: ['./add-media.component.css']
 })
 export class AddMediaComponent implements OnInit {
-  constructor(private apiService: ApiService) {}
+  media: Media;
+
+  constructor(private apiService: ApiService) {
+    this.media = {
+      name: '',
+      consumed: false,
+      medium: ''
+    }
+  }
 
   ngOnInit() {
   }
 
-  add(mediaName: string): void {
-    if (!mediaName.trim()) {
+  add(): void {
+    if (!this.media.name.trim()) {
       return;
     }
 
-    this.apiService.addMedia({'name': mediaName, 'consumed': false}).subscribe();
-    // TODO take the new media item, pass it up to app.component, so it can update the appropriate
-    // components
+    this.apiService.addMedia(this.media).subscribe();
   }
 }
