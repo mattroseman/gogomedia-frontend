@@ -1,4 +1,7 @@
 <div class="media-view-element" *ngIf="mediaElement">
+  <img *ngIf="mediaElement.medium === 'literature'" src="assets/book_icon.png" class="media-view-element-icon" />
+  <img *ngIf="mediaElement.medium === 'audio'" src="assets/audio_icon.png" class="media-view-element-icon" />
+  <img *ngIf="mediaElement.medium === 'film'" src="assets/film_icon.png" class="media-view-element-icon" />
   <span class="media-view-element-name">{{ mediaElement.name }}</span>
   <button class="media-view-element-delete" (click)="delete(mediaElement)">X</button>
 </div>

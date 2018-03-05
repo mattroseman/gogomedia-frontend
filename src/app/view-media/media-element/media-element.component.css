@@ -17,6 +17,12 @@
   border: none;
 }
 
+.media-view-element-icon {
+  background-color: #FFFFFF;
+  height: 25px;
+  width: 25px;
+}
+
 .media-view-element-name {
   display: flex;
   flex-direction: row;
