@@ -1,20 +1,26 @@
 .media-view-element {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: stretch;
 
   border: 1px solid #3671AB;
 
   background-color: #FFFFFF;
 
-  margin: 3px;
+  margin-bottom: 3px;
 
   min-height: 25px;
+  min-width: 320px;
 }
 
 .media-view-element.preview {
   border: none;
+}
+
+.media-view-element-icon-container {
+  min-width: 25px;
+  background-color: #FFFFFF;
 }
 
 .media-view-element-icon {

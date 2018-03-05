@@ -6,6 +6,8 @@ import { DndListModule } from 'ngx-drag-and-drop-lists';
 
 import { ApiService } from './api.service';
 
+import { TrimNamePipe } from './trim-name.pipe';
+
 import { AppComponent } from './app.component';
 import { AddMediaComponent } from './view-media/add-media/add-media.component';
 import { ViewMediaComponent } from './view-media/view-media.component';
@@ -22,7 +24,8 @@ import { SignupComponent } from './signup/signup.component';
     ViewMediaComponent,
     MediaElementComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    TrimNamePipe
   ],
   imports: [
     BrowserModule,
