@@ -44,10 +44,13 @@ input[type="radio"] {
   color: #F8F9F9
 }
 
+/*
 .view-media-filter-toggle-button.selected:hover {
   background-color: #F8F9F9;
+  background-color: #A3CAEF;
   color: #364048;
 }
+*/
 
 .view-media-lists-container {
   display: flex;
