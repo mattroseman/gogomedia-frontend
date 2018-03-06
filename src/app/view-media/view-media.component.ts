@@ -13,8 +13,9 @@ import { Media } from '../media';
   styleUrls: ['./view-media.component.css']
 })
 export class ViewMediaComponent implements OnInit {
-  consumedMediaList: Media[];
-  unconsumedMediaList: Media[];
+  notStartedMediaList: Media[];
+  startedMediaList: Media[];
+  finishedMediaList: Media[];
 
   showAudio: boolean;
   showFilm: boolean;
@@ -40,23 +41,30 @@ export class ViewMediaComponent implements OnInit {
   getMedia() {
     this.apiService.mediaUpdates
       .subscribe((media: Media[]) => {
-        // TODO manually remove deleted elements, and added elements to end, but mantain order from last instance
-        this.consumedMediaList = media.filter((media: Media) => {return media.consumed});
-        this.unconsumedMediaList = media.filter((media: Media) => {return !media.consumed});
+        this.notStartedMediaList = media.filter((media: Media) => {return media.consumed_state === 'not started'});
+        this.startedMediaList = media.filter((media: Media) => {return media.consumed_state === 'started'});
+        this.finishedMediaList = media.filter((media: Media) => {return media.consumed_state === 'finished'});
       });
 
     this.apiService.getMedia().subscribe();
   }
-delete(media: Media) {
+
+  delete(media: Media) {
     this.apiService.deleteMedia(media).subscribe();
   }
 
   handleElementDrag(mediaElement: Media, currentList: Media[]): void {
     currentList.splice(currentList.indexOf(mediaElement), 1);
-    this.apiService.updateMedia({ 
-      'name': mediaElement.name, 
-      'consumed': this.consumedMediaList.some((media: Media) => {return media.name === mediaElement.name;})
-    }).subscribe();
+
+    if (this.notStartedMediaList.some((media: Media) => {return media.name === mediaElement.name;})) {
+      mediaElement.consumed_state = 'not started';
+    } else if (this.startedMediaList.some((media: Media) => {return media.name === mediaElement.name;})) {
+      mediaElement.consumed_state = 'started';
+    } else {
+      mediaElement.consumed_state = 'finished';
+    }
+
+    this.apiService.updateMedia(mediaElement).subscribe();
   }
 
   handleAudioFilterClick(): void {

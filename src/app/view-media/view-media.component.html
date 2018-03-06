@@ -35,17 +35,17 @@
   </div>
 
   <div class="view-media-lists-container">
-    <div class="view-media-unconsumed-container">
-      <h3>Unconsumed Media</h3>
+    <div class="view-media-not-started-container">
+      <h3>Not Started</h3>
       <div class="view-media-list"
         [dndList]
         [dndPlaceholder]="placeholder"
-        [dndModel]="unconsumedMediaList"
+        [dndModel]="notStartedMediaList"
       >
-        <div *ngFor="let mediaElement of unconsumedMediaList">
+        <div *ngFor="let mediaElement of notStartedMediaList">
           <div *ngIf="shouldShowMedia(mediaElement)"
             [dndType]="'mediaElement'"
-            (dndMoved)="handleElementDrag(mediaElement, unconsumedMediaList)"
+            (dndMoved)="handleElementDrag(mediaElement, notStartedMediaList)"
             [dndDraggable]
             [dndObject]="mediaElement"
           >
@@ -55,17 +55,37 @@
       </div>
     </div>
 
-    <div class="view-media-consumed-container">
-      <h3>Consumed Media</h3>
+    <div class="view-media-started-container">
+      <h3>Started</h3>
       <div class="view-media-list"
         [dndList]
         [dndPlaceholder]="placeholder"
-        [dndModel]="consumedMediaList"
+        [dndModel]="startedMediaList"
       >
-        <div *ngFor="let mediaElement of consumedMediaList">
+        <div *ngFor="let mediaElement of startedMediaList">
           <div *ngIf="shouldShowMedia(mediaElement)"
             [dndType]="'mediaElement'"
-            (dndMoved)="handleElementDrag(mediaElement, consumedMediaList)"
+            (dndMoved)="handleElementDrag(mediaElement, startedMediaList)"
+            [dndDraggable]
+            [dndObject]="mediaElement"
+          >
+            <app-media-element [media]="mediaElement"></app-media-element>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-media-finished-container">
+      <h3>Finished</h3>
+      <div class="view-media-list"
+        [dndList]
+        [dndPlaceholder]="placeholder"
+        [dndModel]="finishedMediaList"
+      >
+        <div *ngFor="let mediaElement of finishedMediaList">
+          <div *ngIf="shouldShowMedia(mediaElement)"
+            [dndType]="'mediaElement'"
+            (dndMoved)="handleElementDrag(mediaElement, finishedMediaList)"
             [dndDraggable]
             [dndObject]="mediaElement"
           >

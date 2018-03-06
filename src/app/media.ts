@@ -1,5 +1,5 @@
 export class Media {
   name: string;
-  consumed?: boolean;
   medium?: string;
+  consumed_state?: string;
 }
