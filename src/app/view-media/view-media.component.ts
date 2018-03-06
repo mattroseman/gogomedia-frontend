@@ -79,15 +79,12 @@ delete(media: Media) {
     switch(media.medium) {
       case 'audio':
         return this.showAudio;
-        break;
 
       case 'film':
         return this.showFilm;
-        break;
 
       case 'literature':
         return this.showLiterature;
-        break;
 
       default:
         return this.showOther;
