@@ -3,41 +3,74 @@
   <div class="dndPlaceholder" #placeholder>
     <app-media-element></app-media-element>
   </div>
-  <div class="view-media-unconsumed-container">
-    <h3>Unconsumed Media</h3>
-    <div class="view-media-list"
-      [dndList]
-      [dndPlaceholder]="placeholder"
-      [dndModel]="unconsumedMediaList"
-    >
-      <div *ngFor="let mediaElement of unconsumedMediaList">
-        <div *ngIf="!mediaElement.consumed"
-          [dndType]="'mediaElement'"
-          (dndMoved)="handleElementDrag(mediaElement, unconsumedMediaList)"
-          [dndDraggable]
-          [dndObject]="mediaElement"
-        >
-          <app-media-element [media]="mediaElement"></app-media-element>
-        </div>
-      </div>
+
+  <div class="view-media-filter-container">
+    <div>
+      <label class="view-media-filter-toggle-button" [class.selected]="showAudio">
+        <input type="radio" (click)="handleAudioFilterClick()" />
+        Audio
+      </label>
+    </div>
+
+    <div>
+      <label class="view-media-filter-toggle-button" [class.selected]="showFilm">
+        <input type="radio" (click)="handleFilmFilterClick()" />
+        Film
+      </label>
+    </div>
+
+    <div>
+      <label class="view-media-filter-toggle-button" [class.selected]="showLiterature">
+        <input type="radio" (click)="handleLiteratureFilterClick()" />
+        Literature
+      </label>
+    </div>
+
+    <div>
+      <label class="view-media-filter-toggle-button" [class.selected]="showOther">
+        <input type="radio" (click)="handleOtherFilterClick()" />
+        Other
+      </label>
     </div>
   </div>
 
-  <div class="view-media-consumed-container">
-    <h3>Consumed Media</h3>
-    <div class="view-media-list"
-      [dndList]
-      [dndPlaceholder]="placeholder"
-      [dndModel]="consumedMediaList"
-    >
-      <div *ngFor="let mediaElement of consumedMediaList">
-        <div *ngIf="mediaElement.consumed"
-          [dndType]="'mediaElement'"
-          (dndMoved)="handleElementDrag(mediaElement, consumedMediaList)"
-          [dndDraggable]
-          [dndObject]="mediaElement"
-        >
-          <app-media-element [media]="mediaElement"></app-media-element>
+  <div class="view-media-lists-container">
+    <div class="view-media-unconsumed-container">
+      <h3>Unconsumed Media</h3>
+      <div class="view-media-list"
+        [dndList]
+        [dndPlaceholder]="placeholder"
+        [dndModel]="unconsumedMediaList"
+      >
+        <div *ngFor="let mediaElement of unconsumedMediaList">
+          <div *ngIf="shouldShowMedia(mediaElement)"
+            [dndType]="'mediaElement'"
+            (dndMoved)="handleElementDrag(mediaElement, unconsumedMediaList)"
+            [dndDraggable]
+            [dndObject]="mediaElement"
+          >
+            <app-media-element [media]="mediaElement"></app-media-element>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-media-consumed-container">
+      <h3>Consumed Media</h3>
+      <div class="view-media-list"
+        [dndList]
+        [dndPlaceholder]="placeholder"
+        [dndModel]="consumedMediaList"
+      >
+        <div *ngFor="let mediaElement of consumedMediaList">
+          <div *ngIf="shouldShowMedia(mediaElement)"
+            [dndType]="'mediaElement'"
+            (dndMoved)="handleElementDrag(mediaElement, consumedMediaList)"
+            [dndDraggable]
+            [dndObject]="mediaElement"
+          >
+            <app-media-element [media]="mediaElement"></app-media-element>
+          </div>
         </div>
       </div>
     </div>

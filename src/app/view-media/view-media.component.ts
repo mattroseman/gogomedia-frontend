@@ -16,7 +16,17 @@ export class ViewMediaComponent implements OnInit {
   consumedMediaList: Media[];
   unconsumedMediaList: Media[];
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  showAudio: boolean;
+  showFilm: boolean;
+  showLiterature: boolean;
+  showOther: boolean;
+
+  constructor(private apiService: ApiService, private router: Router) {
+    this.showAudio = true;
+    this.showFilm = true;
+    this.showLiterature = true;
+    this.showOther = true;
+  }
 
   ngOnInit() {
     // if the user isn't logged in yet, redirect to login page
@@ -37,8 +47,7 @@ export class ViewMediaComponent implements OnInit {
 
     this.apiService.getMedia().subscribe();
   }
-
-  delete(media: Media) {
+delete(media: Media) {
     this.apiService.deleteMedia(media).subscribe();
   }
 
@@ -48,5 +57,40 @@ export class ViewMediaComponent implements OnInit {
       'name': mediaElement.name, 
       'consumed': this.consumedMediaList.some((media: Media) => {return media.name === mediaElement.name;})
     }).subscribe();
+  }
+
+  handleAudioFilterClick(): void {
+    this.showAudio = !this.showAudio;
+  }
+
+  handleFilmFilterClick(): void {
+    this.showFilm = !this.showFilm;
+  }
+
+  handleLiteratureFilterClick(): void {
+    this.showLiterature = !this.showLiterature
+  }
+
+  handleOtherFilterClick(): void {
+    this.showOther = !this.showOther;
+  }
+
+  shouldShowMedia(media: Media): boolean {
+    switch(media.medium) {
+      case 'audio':
+        return this.showAudio;
+        break;
+
+      case 'film':
+        return this.showFilm;
+        break;
+
+      case 'literature':
+        return this.showLiterature;
+        break;
+
+      default:
+        return this.showOther;
+    }
   }
 }
