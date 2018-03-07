@@ -23,6 +23,10 @@ export class ViewMediaComponent implements OnInit {
   showOther: boolean;
 
   constructor(private apiService: ApiService, private router: Router) {
+    this.notStartedMediaList = [];
+    this.startedMediaList = [];
+    this.finishedMediaList = [];
+
     this.showAudio = true;
     this.showFilm = true;
     this.showLiterature = true;
@@ -38,12 +42,57 @@ export class ViewMediaComponent implements OnInit {
     this.getMedia();
   }
 
+  indexOfMediaInList(media: Media, mediaList: Media[]): number {
+    for (var i = 0; i < mediaList.length; i++) {
+      if (mediaList[i].name === media.name) {
+        return i
+      }
+    }
+
+    return -1
+  }
+
   getMedia() {
     this.apiService.mediaUpdates
       .subscribe((media: Media[]) => {
-        this.notStartedMediaList = media.filter((media: Media) => {return media.consumed_state === 'not started'});
-        this.startedMediaList = media.filter((media: Media) => {return media.consumed_state === 'started'});
-        this.finishedMediaList = media.filter((media: Media) => {return media.consumed_state === 'finished'});
+        var newNotStartedMediaList = media.filter((media: Media) => {return media.consumed_state === 'not started';});
+        var newStartedMediaList = media.filter((media: Media) => {return media.consumed_state === 'started';});
+        var newFinishedMediaList = media.filter((media: Media) => {return media.consumed_state === 'finished';});
+
+        // Add new elements
+        for (var newMedia of newNotStartedMediaList) {
+          var index = this.indexOfMediaInList(newMedia, this.notStartedMediaList);
+          if (index < 0) {
+            this.notStartedMediaList.push(newMedia);
+          }
+        }
+
+        for (var newMedia of newStartedMediaList) {
+          var index = this.indexOfMediaInList(newMedia, this.startedMediaList);
+          if (index < 0) {
+            this.startedMediaList.push(newMedia);
+          }
+        }
+
+        for (var newMedia of newFinishedMediaList) {
+          var index = this.indexOfMediaInList(newMedia, this.finishedMediaList);
+          if (index < 0) {
+            this.finishedMediaList.push(newMedia);
+          }
+        }
+
+        // Remove old elements
+        this.notStartedMediaList = this.notStartedMediaList.filter((oldMedia: Media) => {
+          return this.indexOfMediaInList(oldMedia, newNotStartedMediaList) >= 0;
+        });
+
+        this.startedMediaList = this.startedMediaList.filter((oldMedia: Media) => {
+          return this.indexOfMediaInList(oldMedia, newStartedMediaList) >= 0;
+        });
+
+        this.finishedMediaList = this.finishedMediaList.filter((oldMedia: Media) => {
+          return this.indexOfMediaInList(oldMedia, newFinishedMediaList) >= 0;
+        });
       });
 
     this.apiService.getMedia().subscribe();
@@ -54,13 +103,27 @@ export class ViewMediaComponent implements OnInit {
   }
 
   handleElementDrag(mediaElement: Media, currentList: Media[]): void {
-    currentList.splice(currentList.indexOf(mediaElement), 1);
+    // Remove this element from it's old list
+    currentList.splice(this.indexOfMediaInList(mediaElement, currentList), 1);
 
-    if (this.notStartedMediaList.some((media: Media) => {return media.name === mediaElement.name;})) {
+    // Update the consumed_state of the mediaElement to match the list it was added to
+    var index: number;
+
+    index = this.indexOfMediaInList(mediaElement, this.notStartedMediaList);
+    if (index >= 0) {
+      this.notStartedMediaList[index].consumed_state = 'not started';
       mediaElement.consumed_state = 'not started';
-    } else if (this.startedMediaList.some((media: Media) => {return media.name === mediaElement.name;})) {
+    }
+
+    index = this.indexOfMediaInList(mediaElement, this.startedMediaList);
+    if (index >= 0) {
+      this.startedMediaList[index].consumed_state = 'started';
       mediaElement.consumed_state = 'started';
-    } else {
+    }
+
+    index = this.indexOfMediaInList(mediaElement, this.finishedMediaList);
+    if (index >= 0) {
+      this.finishedMediaList[index].consumed_state = 'finished';
       mediaElement.consumed_state = 'finished';
     }
 
