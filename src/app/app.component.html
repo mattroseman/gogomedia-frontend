@@ -1,6 +1,6 @@
 <div class="site-container">
   <div class="site-header">
-    <div *ngIf="!this.apiService.loggedIn" class="header-left-container">
+    <div *ngIf="!isLoggedIn()" class="header-left-container">
       <button class="signup-button" routerLink="/signup">
         Sign Up
       </button>
@@ -8,7 +8,7 @@
         Log In
       </button>
     </div>
-    <div *ngIf="this.apiService.loggedIn" class="header-left-container">
+    <div *ngIf="isLoggedIn()" class="header-left-container">
       <button class="logout-button" (click)="logout()" routerLink="/login">
         Log Out
       </button>

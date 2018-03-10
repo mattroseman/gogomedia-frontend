@@ -19,7 +19,7 @@ export class ApiResponse {
   auth_token?: string;
 }
 
-const apiUrl = 'http://localhost:5000';
+const apiUrl = 'https://gogomedia-backend.herokuapp.com';
 
 @Injectable()
 export class ApiService {

@@ -12,7 +12,11 @@ export class AppComponent {
 
   constructor(private apiService: ApiService) {}
 
-  logout() {
+  isLoggedIn(): boolean {
+    return this.apiService.loggedIn;
+  }
+
+  logout(): void {
     this.apiService.logout().subscribe();
   }
 }

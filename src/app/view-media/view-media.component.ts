@@ -55,6 +55,7 @@ export class ViewMediaComponent implements OnInit {
   getMedia() {
     this.apiService.mediaUpdates
       .subscribe((media: Media[]) => {
+        // TODO check for updates to media elements
         var newNotStartedMediaList = media.filter((media: Media) => {return media.consumed_state === 'not started';});
         var newStartedMediaList = media.filter((media: Media) => {return media.consumed_state === 'started';});
         var newFinishedMediaList = media.filter((media: Media) => {return media.consumed_state === 'finished';});
