@@ -7,28 +7,28 @@
   <div class="view-media-filter-container">
     <div>
       <label class="view-media-filter-toggle-button" [class.selected]="showAudio">
-        <input type="radio" (click)="handleAudioFilterClick()" />
+        <input type="radio" (click)="showAudio = !showAudio" />
         Audio
       </label>
     </div>
 
     <div>
       <label class="view-media-filter-toggle-button" [class.selected]="showFilm">
-        <input type="radio" (click)="handleFilmFilterClick()" />
+        <input type="radio" (click)="showFilm = !showFilm" />
         Film
       </label>
     </div>
 
     <div>
       <label class="view-media-filter-toggle-button" [class.selected]="showLiterature">
-        <input type="radio" (click)="handleLiteratureFilterClick()" />
+        <input type="radio" (click)="showLiterature = !showLiterature" />
         Literature
       </label>
     </div>
 
     <div>
       <label class="view-media-filter-toggle-button" [class.selected]="showOther">
-        <input type="radio" (click)="handleOtherFilterClick()" />
+        <input type="radio" (click)="showOther = !showOther" />
         Other
       </label>
     </div>

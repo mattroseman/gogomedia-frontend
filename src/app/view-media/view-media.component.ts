@@ -131,22 +131,6 @@ export class ViewMediaComponent implements OnInit {
     this.apiService.updateMedia(mediaElement).subscribe();
   }
 
-  handleAudioFilterClick(): void {
-    this.showAudio = !this.showAudio;
-  }
-
-  handleFilmFilterClick(): void {
-    this.showFilm = !this.showFilm;
-  }
-
-  handleLiteratureFilterClick(): void {
-    this.showLiterature = !this.showLiterature
-  }
-
-  handleOtherFilterClick(): void {
-    this.showOther = !this.showOther;
-  }
-
   shouldShowMedia(media: Media): boolean {
     switch(media.medium) {
       case 'audio':
