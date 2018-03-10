@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ApiService } from '../api.service';
 
 import { Media } from '../media';
+
+import { EditMediaComponent } from './edit-media/edit-media.component';
 
 @Component({
   selector: 'app-view-media',
@@ -22,7 +25,11 @@ export class ViewMediaComponent implements OnInit {
   showLiterature: boolean;
   showOther: boolean;
 
-  constructor(private apiService: ApiService, private router: Router) {
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {
     this.notStartedMediaList = [];
     this.startedMediaList = [];
     this.finishedMediaList = [];
@@ -101,6 +108,14 @@ export class ViewMediaComponent implements OnInit {
 
   delete(media: Media) {
     this.apiService.deleteMedia(media).subscribe();
+  }
+
+  handleElementSelect(mediaElement: Media): void {
+    // TODO open modal dialog
+    let dialogRef = this.dialog.open(EditMediaComponent, {
+      width: '250px',
+      data: mediaElement
+    });
   }
 
   handleElementDrag(mediaElement: Media, currentList: Media[]): void {

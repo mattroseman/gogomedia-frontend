@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DndListModule } from 'ngx-drag-and-drop-lists';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ApiService } from './api.service';
 
@@ -15,6 +17,7 @@ import { MediaElementComponent } from './view-media/media-element/media-element.
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './signup/signup.component';
+import { EditMediaComponent } from './view-media/edit-media/edit-media.component';
 
 
 @NgModule({
@@ -25,15 +28,19 @@ import { SignupComponent } from './signup/signup.component';
     MediaElementComponent,
     LoginComponent,
     SignupComponent,
-    TrimNamePipe
+    TrimNamePipe,
+    EditMediaComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     DndListModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
+  entryComponents: [EditMediaComponent],
   providers: [ApiService],
   bootstrap: [AppComponent]
 })
