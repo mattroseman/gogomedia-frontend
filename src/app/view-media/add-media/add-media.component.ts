@@ -15,9 +15,7 @@ export class AddMediaComponent implements OnInit {
     medium: 'other'
   };
 
-  constructor(private apiService: ApiService) {
-    console.log(this.media.medium);
-  }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
   }

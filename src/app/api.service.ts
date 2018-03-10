@@ -7,6 +7,8 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 import { Media } from './media';
 
+import { environment } from '../environments/environment';
+
 // ApiResponse is the format response from the api will take
 export class ApiResponse {
   // status represents the success/failure of the request
@@ -19,7 +21,8 @@ export class ApiResponse {
   auth_token?: string;
 }
 
-const apiUrl = 'https://gogomedia-backend.herokuapp.com';
+//const apiUrl = 'https://gogomedia-backend.herokuapp.com';
+const apiUrl = environment.apiUrl;
 
 @Injectable()
 export class ApiService {
