@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Media } from '../../media';
@@ -13,6 +13,9 @@ export class EditMediaComponent implements OnInit {
     public dialogRef: MatDialogRef<EditMediaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Media
   ) {}
+
+  ngOnInit() {
+  }
 
   onClose() {
     // TODO forward the new media item to view media (or call api.service here)
