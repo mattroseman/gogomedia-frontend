@@ -2,3 +2,15 @@
   display: flex;
   flex-direction: column;
 }
+
+.edit-media-dialog-form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.edit-media-dialog-property {
+  margin-bottom: 10px;
+
+  font-size: 15px;
+}
