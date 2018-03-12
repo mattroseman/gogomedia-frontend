@@ -18,7 +18,6 @@ export class EditMediaComponent implements OnInit {
   }
 
   onClose() {
-    // TODO forward the new media item to view media (or call api.service here)
     this.dialogRef.close();
   }
 

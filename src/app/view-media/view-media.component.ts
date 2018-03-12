@@ -97,6 +97,19 @@ export class ViewMediaComponent implements OnInit {
         this.finishedMediaList = this.finishedMediaList.filter((oldMedia: Media) => {
           return this.indexOfMediaInList(oldMedia, newFinishedMediaList) >= 0;
         });
+
+        // Update existing elements
+        this.notStartedMediaList = this.notStartedMediaList.map((oldMedia: Media) => {
+          return newNotStartedMediaList[this.indexOfMediaInList(oldMedia, newNotStartedMediaList)];
+        });
+
+        this.startedMediaList = this.startedMediaList.map((oldMedia: Media) => {
+          return newStartedMediaList[this.indexOfMediaInList(oldMedia, newStartedMediaList)];
+        });
+
+        this.finishedMediaList = this.finishedMediaList.map((oldMedia: Media) => {
+          return newFinishedMediaList[this.indexOfMediaInList(oldMedia, newFinishedMediaList)];
+        });
       });
 
     this.apiService.getMedia().subscribe();
