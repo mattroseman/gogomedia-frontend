@@ -4,7 +4,7 @@ import {NgForm, FormGroup } from '@angular/forms'
 
 import { User } from '../user';
 
-import { ApiService, ApiResponse } from '../api.service';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-signup',

@@ -15,10 +15,32 @@ export class ApiResponse {
   success: boolean;
   // message contains info on what whent wrong, or what was done successfully
   message: string;
-  // data contains any relevant data
-  data?: any;
+}
+
+export class RegisterApiResponse extends ApiResponse {}
+
+export class LoginApiResponse extends ApiResponse {
   // auth_token contains a signed authentication token, used for authenticating the user after login
-  auth_token?: string;
+  auth_token: string;
+}
+
+export class LogoutApiResponse extends ApiResponse {}
+
+export class AddApiResponse extends ApiResponse {
+  // data includes the newly added media element
+  data: Media;
+}
+
+export class UpdateApiResponse extends ApiResponse {
+  // data includes the newly updated media element
+  data: Media;
+}
+
+export class DeleteApiResponse extends ApiResponse {}
+
+export class GetApiResponse extends ApiResponse {
+  // data includes the list of media elements gotten
+  data: Media[];
 }
 
 //const apiUrl = 'https://gogomedia-backend.herokuapp.com';
@@ -34,6 +56,7 @@ export class ApiService {
   // when media elements are added/deleted/updated mediaUpdates publishes the new list of
   // media elements
   mediaUpdates = new Subject<Media[]>();
+  currentMediaList: Media[];
 
   constructor(private http: HttpClient) {
     this.loggedIn = false;
@@ -60,7 +83,7 @@ export class ApiService {
 
     return this.http.post(url, body, options)
       .pipe(
-        map(_ => {
+        map((response: RegisterApiResponse) => {
           console.log(`user: ${username} was successfully registered`);
           return 'success';
         }),
@@ -87,7 +110,7 @@ export class ApiService {
 
     return this.http.post(url, body, options)
       .pipe(
-        map((response: ApiResponse) => {
+        map((response: LoginApiResponse) => {
           console.log(`user: ${username} was successfully logged in`);
 
           this.loggedIn = true;
@@ -124,7 +147,7 @@ export class ApiService {
 
     return this.http.get(url, options)
       .pipe(
-        map((response: ApiResponse) => {
+        map((response: LogoutApiResponse) => {
           console.log(`user: ${this.currentUser} was successfully logged out`);
 
           this.loggedIn = false;
@@ -157,11 +180,11 @@ export class ApiService {
 
     return this.http.put(url, body, options)
       .pipe(
-        map((response: ApiResponse) => {
+        map((response: AddApiResponse) => {
           console.log(`media: ${response.data.name} was successfully added`);
 
-          // call getMedia which will update mediaUpdates subject
-          this.getMedia().subscribe();
+          this.currentMediaList.push(response.data);
+          this.mediaUpdates.next(this.currentMediaList);
 
           return response.data;
         }),
@@ -181,11 +204,16 @@ export class ApiService {
 
     return this.http.put(url, body, options)
       .pipe(
-        map((response: ApiResponse) => {
+        map((response: UpdateApiResponse) => {
           console.log(`media: ${response.data.name} was successfully updated`);
 
-          // call getMedia which will update mediaUpdates subject
-          this.getMedia().subscribe();
+          this.currentMediaList = this.currentMediaList.map((mediaElement: Media) => {
+            if (mediaElement.name === response.data.name) {
+              mediaElement = response.data;
+            }
+            return mediaElement;
+          });
+          this.mediaUpdates.next(this.currentMediaList);
 
           return response.data;
         }),
@@ -203,10 +231,11 @@ export class ApiService {
 
     return this.http.get(url, options)
       .pipe(
-        map((response: ApiResponse) => {
+        map((response: GetApiResponse) => {
           console.log(`list of media was successfully gotten`);
 
-          this.mediaUpdates.next(response.data);
+          this.currentMediaList = response.data;
+          this.mediaUpdates.next(this.currentMediaList);
 
           return response.data;
         }),
@@ -227,11 +256,13 @@ export class ApiService {
     // HttpClient delete method doesn't allow for a body, so a generic request is created
     return this.http.request('delete', url, options)
       .pipe(
-        map((response: ApiResponse) => {
+        map((response: DeleteApiResponse) => {
           console.log(`media: ${media.name} was deleted successfully`);
 
-          // call getMedia which will update mediaUpdates subject
-          this.getMedia().subscribe();
+          this.currentMediaList = this.currentMediaList.filter((mediaElement: Media) => {
+            return mediaElement.name !== media.name;
+          });
+          this.mediaUpdates.next(this.currentMediaList);
 
           return 'success';
         }),
