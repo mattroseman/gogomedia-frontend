@@ -46,7 +46,6 @@
           <div *ngIf="shouldShowMedia(mediaElement)"
             [dndType]="'mediaElement'"
             (dndMoved)="handleElementDrag(mediaElement, notStartedMediaList)"
-            (dndSelected)="handleElementSelect(mediaElement)"
             [dndDraggable]
             [dndObject]="mediaElement"
           >
@@ -67,7 +66,6 @@
           <div *ngIf="shouldShowMedia(mediaElement)"
             [dndType]="'mediaElement'"
             (dndMoved)="handleElementDrag(mediaElement, startedMediaList)"
-            (dndSelected)="handleElementSelect(mediaElement)"
             [dndDraggable]
             [dndObject]="mediaElement"
           >
@@ -88,7 +86,6 @@
           <div *ngIf="shouldShowMedia(mediaElement)"
             [dndType]="'mediaElement'"
             (dndMoved)="handleElementDrag(mediaElement, finishedMediaList)"
-            (dndSelected)="handleElementSelect(mediaElement)"
             [dndDraggable]
             [dndObject]="mediaElement"
           >

@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ApiService } from '../../api.service';
 
 import { Media } from '../../media';
+
+import { EditMediaComponent } from '../edit-media/edit-media.component';
 
 @Component({
   selector: 'app-media-element',
@@ -12,12 +15,22 @@ import { Media } from '../../media';
 export class MediaElementComponent implements OnInit {
   @Input('media') mediaElement: Media;
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
   }
 
-  delete(media: Media) {
-    this.apiService.deleteMedia(media).subscribe();
+  onSelect() {
+    let dialogRef = this.dialog.open(EditMediaComponent, {
+      width: '400px',
+      data: this.mediaElement
+    });
+  }
+
+  onDelete() {
+    this.apiService.deleteMedia(this.mediaElement).subscribe();
   }
 }

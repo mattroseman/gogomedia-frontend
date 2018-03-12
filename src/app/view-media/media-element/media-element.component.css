@@ -20,6 +20,12 @@
   border: none;
 }
 
+.media-view-element-selectable-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
 .media-view-element-icon-container {
   min-width: 25px;
   background-color: #FFFFFF;
