@@ -260,7 +260,7 @@ export class ApiService {
           console.log(`media: ${media.name} was deleted successfully`);
 
           this.currentMediaList = this.currentMediaList.filter((mediaElement: Media) => {
-            return mediaElement.name !== media.name;
+            return mediaElement.id !== media.id;
           });
           this.mediaUpdates.next(this.currentMediaList);
 
