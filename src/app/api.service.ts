@@ -208,7 +208,7 @@ export class ApiService {
           console.log(`media: ${response.data.name} was successfully updated`);
 
           this.currentMediaList = this.currentMediaList.map((mediaElement: Media) => {
-            if (mediaElement.name === response.data.name) {
+            if (mediaElement.id === response.data.id) {
               mediaElement = response.data;
             }
             return mediaElement;
