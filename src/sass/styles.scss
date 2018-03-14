@@ -82,3 +82,7 @@ button {
 
   min-height: 30px;
 }
+
+.modal-dialog .mat-dialog-container {
+  background-color: $light-gray;
+}
