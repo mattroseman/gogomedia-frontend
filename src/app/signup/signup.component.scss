@@ -46,25 +46,14 @@
 }
 
 .form-group__input {
-  border: 1px solid #364048;
-
-  background-color: #FFFFFF;
-
-  font-size: 15px;
-
   padding-left: 5px;
-
-  height: 25px;
 }
 
 .form-group__input.ng-touched.ng-invalid, .from-group__input.ng-pristine.invalid{
-  border: 1px solid red;
+  border-color: red;
 }
 
 .submit {
   display: flex;
   align-self: flex-end;
-  font-size: 18px;
-
-  height: 30px;
 }

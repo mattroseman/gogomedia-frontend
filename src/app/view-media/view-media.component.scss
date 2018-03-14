@@ -1,3 +1,5 @@
+@import "../../sass/variables";
+
 .view-media-container {
   display: flex;
   flex-direction: column;
@@ -19,10 +21,10 @@ input[type="radio"] {
 }
 
 .filter__toggle-button {
-  border: 1px solid #3671AB;
+  border: 1px solid $primary-color;
 
-  background-color: #F8F9F9;
-  color: #364048;
+  background-color: $light-gray;
+  color: $dark-gray;
 
   cursor: pointer;
 
@@ -36,20 +38,18 @@ input[type="radio"] {
 }
 
 .filter__toggle-button:hover {
-  background-color: #A3CAEF;
+  background-color: $primary-color-light;
 }
 
 .filter__toggle-button.selected {
-  background-color: #3671AB;
-  color: #F8F9F9
+  background-color: $primary-color;
+  color: $light-gray;
 }
 
 .media-lists-container {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-
-  /*width: 400px;*/
 }
 
 .media-list-container {
@@ -57,7 +57,7 @@ input[type="radio"] {
   flex-direction: column;
   align-items: center;
 
-  border: 1px solid #3671AB;
+  border: 1px solid $primary-color;
 
   margin-top: 20px;
   margin-left: 5px;
@@ -65,7 +65,6 @@ input[type="radio"] {
   padding: 5px;
 
   min-width: 300px;
-  /*width: 400px;*/
 }
 
 .media-list {
@@ -75,6 +74,5 @@ input[type="radio"] {
 
   min-width: 150px;
   min-height: 20px;
-  /*width: 150px;*/
 }
 

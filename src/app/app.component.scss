@@ -16,10 +16,7 @@
   flex-direction: row;
 }
 
-.signup-button .login-button {
-  font-size: 18px;
-
-  min-height: 22px;
+.signup-button, .login-button {
 }
 
 .login-button {
@@ -27,8 +24,6 @@
 }
 
 .logout-button {
-  font-size: 18px;
-  height: 30px;
 }
 
 .title {

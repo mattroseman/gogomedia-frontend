@@ -1,14 +1,16 @@
+@import "../../../sass/variables";
+
 .media-element {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
 
-  border: 1px solid #3671AB;
+  border: 1px solid $primary-color;
 
   cursor: pointer;
 
-  background-color: #FFFFFF;
+  background-color: $white;
 
   margin-bottom: 3px;
 
@@ -28,11 +30,11 @@
 
 .media-element__icon-container {
   min-width: 25px;
-  background-color: #FFFFFF;
+  background-color: $white;
 }
 
 .media-element__icon {
-  background-color: #FFFFFF;
+  background-color: $white;
   height: 25px;
   width: 25px;
 }
@@ -42,7 +44,7 @@
   flex-direction: row;
   justify-content: center;
 
-  background-color: #FFFFFF;
+  background-color: $white;
 
   text-align: center;
 
@@ -54,14 +56,13 @@
 .media-element__delete {
   font-family: sans-serif;
   font-size: 13px;
-  color: #3671AB;
+  color: $primary-color;
 
-  cursor: pointer;
+  background-color: $white;
 
-  background-color: #FFFFFF;
-
-  border: none;
-  border-left: 1px solid #3671AB;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
 
   width: 30px;
 
@@ -69,5 +70,5 @@
 }
 
 .media-element__delete:hover {
-  background-color: #A3CAEF;
+  background-color: $primary-color-light;
 }
