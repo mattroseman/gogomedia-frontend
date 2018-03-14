@@ -25,6 +25,11 @@
     </select>
   </div>
 
+  <div class="edit-media-dialog-form-group">
+    <label>Description:</label>
+    <textarea class="edit-media-dialog-property" [(ngModel)]="data.description"></textarea>
+  </div>
+
   <div>
     <button mat-dialog-close>Cancel</button>
     <button [mat-dialog-close]="data">Save</button>
