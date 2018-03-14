@@ -25,9 +25,14 @@
     </select>
   </div>
 
-  <div class="dialog__form-group">
+  <div class="dialog__form-group--textarea">
     <label>Description:</label>
-    <textarea class="dialog__property" [(ngModel)]="data.description"></textarea>
+    <textarea 
+      class="dialog__property--textarea"
+      [(ngModel)]="data.description"
+      maxlength=500
+    >
+    </textarea>
   </div>
 
   <div>

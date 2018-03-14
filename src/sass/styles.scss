@@ -34,12 +34,20 @@ ul {
 textarea, input[type=text], input[type=password] {
   border: 1px solid $dark-gray;
   background-color: $white;
+}
+
+input[type=text], input[type=password] {
+  min-height: 25px;
 
   font-size: 18px;
+}
 
-  input[type=text], input[type=password] {
-    min-height: 25px;
-  }
+textarea {
+  resize: none;
+
+  font-size: 15px;
+
+  padding: 5px;
 }
 
 select {

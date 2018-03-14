@@ -3,14 +3,28 @@
   flex-direction: column;
 }
 
-.dialog__form-group {
+.dialog__form-group, .dialog__form-group--textarea {
   display: flex;
+}
+
+.dialog__form-group {
   flex-direction: row;
   justify-content: space-between;
 }
 
-.dialog__property {
+.dialog__form-group--textarea {
+  flex-direction: column;
+}
+
+.dialog__property, .dialog__property--textarea {
   margin-bottom: 10px;
+}
+
+.dialog__property {
+}
+
+.dialog__property--textarea {
+  height: 100px;
 }
 
 .dialog__select-option {
