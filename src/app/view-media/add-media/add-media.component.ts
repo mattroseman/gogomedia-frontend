@@ -26,5 +26,7 @@ export class AddMediaComponent implements OnInit {
     }
 
     this.apiService.addMedia(this.media).subscribe();
+
+    this.media.name = '';
   }
 }
