@@ -1,33 +1,33 @@
 <div class="edit-media-dialog-container">
   <h2>{{ data.name }}</h2>
 
-  <div class="edit-media-dialog-form-group">
+  <div class="dialog__form-group">
     <label>Name:</label>
-    <input class="edit-media-dialog-property" [(ngModel)]="data.name"/>
+    <input class="dialog__property" [(ngModel)]="data.name"/>
   </div>
 
-  <div class="edit-media-dialog-form-group">
+  <div class="dialog__form-group">
     <label>Medium:</label>
-    <select class="edit-media-dialog-property" [(ngModel)]="data.medium">
-      <option class="edit-media-dialog-select-option" value="other">Other</option>
-      <option class="edit-media-dialog-select-option" value="film">Film</option>
-      <option class="edit-media-dialog-select-option" value="audio">Audio</option>
-      <option class="edit-media-dialog-select-option" value="literature">Literature</option>
+    <select class="dialog__property" [(ngModel)]="data.medium">
+      <option class="dialog__select-option" value="other">Other</option>
+      <option class="dialog__select-option" value="film">Film</option>
+      <option class="dialog__select-option" value="audio">Audio</option>
+      <option class="dialog__select-option" value="literature">Literature</option>
     </select>
   </div>
 
-  <div class="edit-media-dialog-form-group">
+  <div class="dialog__form-group">
     <label>Consumed State:</label>
-    <select class="edit-media-dialog-property" [(ngModel)]="data.consumed_state">
-      <option class="edit-media-dialog-select-option" value="not started">Not Started</option>
-      <option class="edit-media-dialog-select-option" value="started">Started</option>
-      <option class="edit-media-dialog-select-option" value="finished">Finished</option>
+    <select class="dialog__property" [(ngModel)]="data.consumed_state">
+      <option class="dialog__select-option" value="not started">Not Started</option>
+      <option class="dialog__select-option" value="started">Started</option>
+      <option class="dialog__select-option" value="finished">Finished</option>
     </select>
   </div>
 
-  <div class="edit-media-dialog-form-group">
+  <div class="dialog__form-group">
     <label>Description:</label>
-    <textarea class="edit-media-dialog-property" [(ngModel)]="data.description"></textarea>
+    <textarea class="dialog__property" [(ngModel)]="data.description"></textarea>
   </div>
 
   <div>

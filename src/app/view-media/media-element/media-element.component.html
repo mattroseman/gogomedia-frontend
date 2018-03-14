@@ -1,17 +1,31 @@
-<div class="media-view-element" *ngIf="mediaElement">
-  <span class="media-view-element-selectable-container"
+<div class="media-element" *ngIf="mediaElement">
+  <span class="media-element__selectable"
     (click)="onSelect()"
   >
-    <span class="media-view-element-icon-container">
-      <img *ngIf="mediaElement.medium === 'literature'" src="assets/book_icon.png" class="media-view-element-icon" />
-      <img *ngIf="mediaElement.medium === 'audio'" src="assets/audio_icon.png" class="media-view-element-icon" />
-      <img *ngIf="mediaElement.medium === 'film'" src="assets/film_icon.png" class="media-view-element-icon" />
+    <span class="media-element__icon-container">
+      <img *ngIf="mediaElement.medium === 'literature'"
+        src="assets/book_icon.png"
+        class="media-element__icon"
+      />
+
+      <img *ngIf="mediaElement.medium === 'audio'"
+        src="assets/audio_icon.png"
+        class="media-element__icon"
+      />
+
+      <img *ngIf="mediaElement.medium === 'film'"
+        src="assets/film_icon.png"
+        class="media-element__icon"
+      />
     </span>
-    <span class="media-view-element-name">
+
+    <span class="media-element__name">
       {{ mediaElement.name | trimName: 20 }}
     </span>
   </span>
-  <button class="media-view-element-delete" (click)="onDelete()">X</button>
+
+  <button class="media-element__delete" (click)="onDelete()">X</button>
 </div>
-<div class="media-view-element preview" *ngIf="!mediaElement">
+
+<div class="media-element preview" *ngIf="!mediaElement">
 </div>

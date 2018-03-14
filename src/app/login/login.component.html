@@ -1,7 +1,7 @@
 <div class="login-container">
   <h2>Login</h2>
 
-  <div class="alerts-container">
+  <div class="alerts">
     <div *ngIf="username.invalid && username.touched"
       class="alert"
     >
@@ -39,9 +39,9 @@
     #loginForm="ngForm"
   >
     <div class="form-group">
-      <label for="username" class="login-label">Username:</label>
+      <label for="username" class="form-group__label">Username:</label>
       <input type="text"
-        class="login-input"
+        class="form-group__input"
         [class.invalid]="userDoesntExist"
         id="username"
         placeholder="username"
@@ -53,9 +53,9 @@
     </div>
 
     <div class="form-group">
-      <label for="password" class="login-label">Password:</label>
+      <label for="password" class="form-group__label">Password:</label>
       <input type="password"
-        class="login-input"
+        class="form-group__input"
         [class.invalid]="incorrectPassword"
         id="password"
         placeholder="password"
@@ -68,7 +68,7 @@
     </div>
 
     <button type="submit"
-      class="login-submit"
+      class="submit"
       [disabled]="!loginForm.form.valid"
     >
       Submit

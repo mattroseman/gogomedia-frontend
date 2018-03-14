@@ -4,14 +4,14 @@
   align-items: center;
 }
 
-.site-header {
+.header {
   display: flex;
   flex-direction: row;
   align-self: stretch;
   justify-content: flex-end;
 }
 
-.header-left-container {
+.header__right {
   display: flex;
   flex-direction: row;
 }

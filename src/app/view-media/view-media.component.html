@@ -4,40 +4,40 @@
     <app-media-element></app-media-element>
   </div>
 
-  <div class="view-media-filter-container">
+  <div class="filter-container">
     <div>
-      <label class="view-media-filter-toggle-button" [class.selected]="showAudio">
+      <label class="filter__toggle-button" [class.selected]="showAudio">
         <input type="radio" (click)="showAudio = !showAudio" />
         Audio
       </label>
     </div>
 
     <div>
-      <label class="view-media-filter-toggle-button" [class.selected]="showFilm">
+      <label class="filter__toggle-button" [class.selected]="showFilm">
         <input type="radio" (click)="showFilm = !showFilm" />
         Film
       </label>
     </div>
 
     <div>
-      <label class="view-media-filter-toggle-button" [class.selected]="showLiterature">
+      <label class="filter__toggle-button" [class.selected]="showLiterature">
         <input type="radio" (click)="showLiterature = !showLiterature" />
         Literature
       </label>
     </div>
 
     <div>
-      <label class="view-media-filter-toggle-button" [class.selected]="showOther">
+      <label class="filter__toggle-button" [class.selected]="showOther">
         <input type="radio" (click)="showOther = !showOther" />
         Other
       </label>
     </div>
   </div>
 
-  <div class="view-media-lists-container">
-    <div class="view-media-list-container">
+  <div class="media-lists-container">
+    <div class="media-list-container">
       <h3>Not Started</h3>
-      <div class="view-media-list"
+      <div class="media-list"
         [dndList]
         [dndPlaceholder]="placeholder"
         [dndModel]="notStartedMediaList"
@@ -55,9 +55,9 @@
       </div>
     </div>
 
-    <div class="view-media-list-container">
+    <div class="media-list-container">
       <h3>Started</h3>
-      <div class="view-media-list"
+      <div class="media-list"
         [dndList]
         [dndPlaceholder]="placeholder"
         [dndModel]="startedMediaList"
@@ -75,9 +75,9 @@
       </div>
     </div>
 
-    <div class="view-media-list-container">
+    <div class="media-list-container">
       <h3>Finished</h3>
-      <div class="view-media-list"
+      <div class="media-list"
         [dndList]
         [dndPlaceholder]="placeholder"
         [dndModel]="finishedMediaList"

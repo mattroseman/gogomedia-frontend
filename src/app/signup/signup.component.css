@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.alerts-container {
+.alerts {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,7 +34,7 @@
   margin-bottom: 10px;
 }
 
-.signup-label {
+.form-group__label {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -45,7 +45,7 @@
   width: 150px;
 }
 
-.signup-input {
+.form-group__input {
   border: 1px solid #364048;
 
   background-color: #FFFFFF;
@@ -57,19 +57,14 @@
   height: 25px;
 }
 
-.signup-input.ng-touched.ng-invalid, .signup-input.ng-pristine.invalid{
+.form-group__input.ng-touched.ng-invalid, .from-group__input.ng-pristine.invalid{
   border: 1px solid red;
 }
 
-.signup-submit {
+.submit {
   display: flex;
   align-self: flex-end;
   font-size: 18px;
 
   height: 30px;
-}
-
-.input-and-alerts-container {
-  display: flex;
-  flex-direction: column;
 }

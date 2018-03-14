@@ -3,17 +3,18 @@
   flex-direction: column;
 }
 
-.edit-media-dialog-form-group {
+.dialog__form-group {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.edit-media-dialog-property {
+.dialog__property {
   margin-bottom: 10px;
 
   font-size: 15px;
 }
 
-.edit-media-dialog-select-option {
+.dialog__select-option {
 }
+

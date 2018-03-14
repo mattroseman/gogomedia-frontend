@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.alerts-container {
+.alerts {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,7 +34,7 @@
   margin-bottom: 10px;
 }
 
-.login-label {
+.form-group__label {
   display: flex;
   flex-direciton: row;
   justify-content: flex-end;
@@ -45,7 +45,7 @@
   width: 150px;
 }
 
-.login-input {
+.form-group__input {
   border: 1px solid #364048;
 
   background-color: #FFFFFF;
@@ -57,11 +57,11 @@
   height: 25px;
 }
 
-.login-input.ng-touched.ng-invalid, .login-input.ng-pristine.invalid {
+.form-group__input.ng-touched.ng-invalid, .form-group__input.ng-pristine.invalid {
   border: 1px solid red;
 }
 
-.login-submit {
+.submit {
   display: flex;
   align-self: flex-end;
   font-size: 18px;

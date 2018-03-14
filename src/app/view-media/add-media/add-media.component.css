@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.add-media-input {
+.add-media__input {
   border: 1px solid #364048;
 
   background-color: #FFFFFF;
@@ -17,7 +17,7 @@
   width: 200px;
 }
 
-.add-media-select {
+.add-media__select {
   border: 1px solid #364048;
 
   font-size: 15px;
@@ -27,11 +27,11 @@
   margin-right: 10px;
 }
 
-.add-media-select-option {
+.add-media__select-option {
   font-size: 15px;
 
   height: 20px;
 }
 
-.add-media-button {
+.add-media__button {
 }

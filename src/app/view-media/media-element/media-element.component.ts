@@ -25,7 +25,7 @@ export class MediaElementComponent implements OnInit {
 
   onSelect() {
     let dialogRef = this.dialog.open(EditMediaComponent, {
-      width: '400px',
+      width: '500px',
       data: JSON.parse(JSON.stringify(this.mediaElement))
     });
 
