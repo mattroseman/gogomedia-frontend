@@ -30,3 +30,13 @@
 .dialog__select-option {
 }
 
+.dialog__actions-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.dialog__action-button {
+  margin-left: 10px;
+}
