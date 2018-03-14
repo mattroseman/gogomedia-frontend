@@ -7,7 +7,7 @@ import { Media } from '../../media';
 @Component({
   selector: 'app-add-media',
   templateUrl: './add-media.component.html',
-  styleUrls: ['./add-media.component.css']
+  styleUrls: ['./add-media.component.scss']
 })
 export class AddMediaComponent implements OnInit {
   media: Media = {

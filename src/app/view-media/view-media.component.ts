@@ -10,7 +10,7 @@ import { Media } from '../media';
 @Component({
   selector: 'app-view-media',
   templateUrl: './view-media.component.html',
-  styleUrls: ['./view-media.component.css']
+  styleUrls: ['./view-media.component.scss']
 })
 export class ViewMediaComponent implements OnInit {
   notStartedMediaList: Media[];

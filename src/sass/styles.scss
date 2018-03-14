@@ -1,0 +1,43 @@
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "./variables";
+@import "./mixins";
+
+h1 {
+  color: $dark-gray;
+  font-family: $font-stack;
+  font-size: 250%
+}
+
+h2, h3 {
+  color: $dark-gray;
+  font-family: $font-stack;
+  font-weight: lighter;
+}
+
+body {
+  margin: 2em;
+}
+
+body {
+  color: $dark-gray;
+
+  font-family: $font-stack;
+  background-color: $light-gray;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-size: 10px;
+  color: $light-gray;
+
+  border: 1px solid $primary-color;
+  /*border-radius: 5%;*/
+  background-color: $primary-color;
+
+  min-height: 22px;
+}
