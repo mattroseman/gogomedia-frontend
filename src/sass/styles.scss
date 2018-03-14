@@ -31,6 +31,10 @@ ul {
   padding: 0;
 }
 
+* {
+  border-radius: 2px;
+}
+
 textarea, input[type=text], input[type=password] {
   border: 1px solid $dark-gray;
   background-color: $white;
@@ -72,7 +76,6 @@ button {
   color: $light-gray;
 
   border: 1px solid $primary-color;
-  border-radius: 0%;
   background-color: $primary-color;
 
   cursor: pointer;
