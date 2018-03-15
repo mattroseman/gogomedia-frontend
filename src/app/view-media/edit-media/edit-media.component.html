@@ -2,12 +2,12 @@
   <h2>{{ data.name }}</h2>
 
   <div class="dialog__form-group">
-    <label>Name</label>
+    <label class="dialog__label">Name</label>
     <input type="text" class="dialog__property" [(ngModel)]="data.name"/>
   </div>
 
   <div class="dialog__form-group">
-    <label>Medium</label>
+    <label class="dialog__label">Medium</label>
     <select class="dialog__property" [(ngModel)]="data.medium">
       <option class="dialog__select-option" value="other">Other</option>
       <option class="dialog__select-option" value="film">Film</option>
@@ -17,7 +17,7 @@
   </div>
 
   <div class="dialog__form-group">
-    <label>Consumed State</label>
+    <label class="dialog__label">Consumed State</label>
     <select class="dialog__property" [(ngModel)]="data.consumed_state">
       <option class="dialog__select-option" value="not started">Not Started</option>
       <option class="dialog__select-option" value="started">Started</option>
@@ -26,7 +26,7 @@
   </div>
 
   <div class="dialog__form-group--textarea">
-    <label>Description</label>
+    <label class="dialog__label">Description</label>
     <textarea 
       class="dialog__property--textarea"
       [(ngModel)]="data.description"
