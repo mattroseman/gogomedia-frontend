@@ -8,28 +8,28 @@
     <div>
       <label class="filter__toggle-button" [class.selected]="showAudio">
         <input type="radio" (click)="showAudio = !showAudio" />
-        Audio
+        <mat-icon svgIcon="audio" class="filter__icon" [class.selected]="showAudio"></mat-icon>
       </label>
     </div>
 
     <div>
       <label class="filter__toggle-button" [class.selected]="showFilm">
         <input type="radio" (click)="showFilm = !showFilm" />
-        Film
+        <mat-icon svgIcon="film" class="filter__icon" [class.selected]="showFilm"></mat-icon>
       </label>
     </div>
 
     <div>
       <label class="filter__toggle-button" [class.selected]="showLiterature">
         <input type="radio" (click)="showLiterature = !showLiterature" />
-        Literature
+        <mat-icon svgIcon="literature" class="filter__icon" [class.selected]="showLiterature"></mat-icon>
       </label>
     </div>
 
     <div>
       <label class="filter__toggle-button" [class.selected]="showOther">
         <input type="radio" (click)="showOther = !showOther" />
-        Other
+        <mat-icon svgIcon="other" class="filter__icon" [class.selected]="showOther"></mat-icon>
       </label>
     </div>
   </div>

@@ -20,4 +20,14 @@
 }
 
 .add-media__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+}
+
+.add-media__button-icon {
+  height: 27px;
+  width: 30px;
 }

@@ -6,7 +6,7 @@
   justify-content: space-between;
   align-items: stretch;
 
-  border: 1px solid $primary-color;
+  border: 1.5px solid $dark-gray;
 
   cursor: pointer;
 
@@ -34,9 +34,9 @@
 }
 
 .media-element__icon {
+  display: block;
+  margin: auto;
   background-color: $white;
-  height: 25px;
-  width: 25px;
 }
 
 .media-element__name {
@@ -54,9 +54,13 @@
 }
 
 .media-element__delete {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+
   font-family: sans-serif;
   font-size: 13px;
-  color: $primary-color;
+  color: $dark-gray;
 
   background-color: $white;
 
@@ -71,5 +75,12 @@
 }
 
 .media-element__delete:hover {
-  background-color: $primary-color-light;
+  background-color: $light-gray;
+}
+
+.media-element__delete-icon {
+  display: flex;
+
+  width: 30px;
+  height: 30px;
 }

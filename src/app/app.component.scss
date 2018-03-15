@@ -1,3 +1,5 @@
+@import "../sass/variables";
+
 .site-container {
   display: flex;
   flex-direction: column;
@@ -9,6 +11,13 @@
   flex-direction: row;
   align-self: stretch;
   justify-content: flex-end;
+
+  border-radius: 0px;
+  /*border-bottom: 1px solid $dark-gray;*/
+
+  padding: 7px;
+
+  background-color: $primary-color;
 }
 
 .header__right {
@@ -16,7 +25,7 @@
   flex-direction: row;
 }
 
-.signup-button, .login-button {
+.signup-button, .login-button, .logout-button {
 }
 
 .login-button {

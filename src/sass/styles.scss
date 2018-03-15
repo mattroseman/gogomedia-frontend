@@ -15,7 +15,7 @@ h2, h3 {
 }
 
 body {
-  margin: 2em;
+  margin: 0px;
 }
 
 body {
@@ -33,6 +33,7 @@ ul {
 
 * {
   border-radius: 2px;
+  border-width: 1.5px;
 }
 
 textarea, input[type=text], input[type=password] {
@@ -73,10 +74,10 @@ option {
 
 button {
   font-size: 18px;
-  color: $light-gray;
+  color: $dark-gray;
 
-  border: 1px solid $primary-color;
-  background-color: $primary-color;
+  border: 1.5px solid $dark-gray;
+  background-color: $light-gray;
 
   cursor: pointer;
 

@@ -3,20 +3,12 @@
     (click)="onSelect()"
   >
     <span class="media-element__icon-container">
-      <img *ngIf="mediaElement.medium === 'literature'"
-        src="assets/book_icon.svg"
+      <mat-icon 
+        *ngIf="mediaElement.medium !== 'other'"
+        svgIcon="{{mediaElement.medium}}"
         class="media-element__icon"
-      />
-
-      <img *ngIf="mediaElement.medium === 'audio'"
-        src="assets/audio_icon.svg"
-        class="media-element__icon"
-      />
-
-      <img *ngIf="mediaElement.medium === 'film'"
-        src="assets/film_icon.svg"
-        class="media-element__icon"
-      />
+      >
+      </mat-icon>
     </span>
 
     <span class="media-element__name">
@@ -24,7 +16,9 @@
     </span>
   </span>
 
-  <button class="media-element__delete" (click)="onDelete()">X</button>
+  <button class="media-element__delete" (click)="onDelete()">
+    <mat-icon svgIcon="delete" class="media-element__delete-icon"></mat-icon>
+  </button>
 </div>
 
 <div class="media-element preview" *ngIf="!mediaElement">
