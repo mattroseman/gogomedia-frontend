@@ -32,6 +32,15 @@
         <mat-icon svgIcon="other" class="filter__icon" [class.selected]="showOther"></mat-icon>
       </label>
     </div>
+
+    <div>
+      <label class="filter__toggle-button"
+        [class.selected]="showAudio && showFilm && showLiterature && showOther"
+      >
+        <input type="radio" (click)="onAllFilterClick()" />
+        all
+      </label>
+    </div>
   </div>
 
   <div class="media-lists-container">

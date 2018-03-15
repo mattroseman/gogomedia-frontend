@@ -24,6 +24,10 @@ input[type="radio"] {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+
+  font-size: 22px;
+  font-weight: bold;
 
   border: 1px solid $primary-color;
   border-radius: 100%;
@@ -32,6 +36,9 @@ input[type="radio"] {
   color: $dark-gray;
 
   cursor: pointer;
+
+  height: 30px;
+  width: 30px;
 
   padding: 5px;
   margin-left: 15px;

@@ -45,6 +45,20 @@ export class ViewMediaComponent implements OnInit {
     this.getMedia();
   }
 
+  onAllFilterClick(): void {
+    if (this.showAudio && this.showFilm && this.showLiterature && this.showOther) {
+      this.showAudio = false;
+      this.showFilm = false;
+      this.showLiterature = false;
+      this.showOther = false;
+    } else {
+      this.showAudio = true;
+      this.showFilm = true;
+      this.showLiterature = true;
+      this.showOther = true;
+    }
+  }
+
   indexOfMediaInList(media: Media, mediaList: Media[]): number {
     for (var i = 0; i < mediaList.length; i++) {
       if (mediaList[i].id === media.id) {
