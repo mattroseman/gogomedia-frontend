@@ -28,6 +28,8 @@ export class AppComponent {
     this.iconRegistry.addSvgIcon('literature', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/book_icon.svg'))
     this.iconRegistry.addSvgIcon('film', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/film_icon.svg'))
     this.iconRegistry.addSvgIcon('other', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/other_icon.svg'))
+    this.iconRegistry.addSvgIcon('edit', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/edit_icon.svg'))
+    this.iconRegistry.addSvgIcon('preview', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/preview_icon.svg'))
   }
 
   isLoggedIn(): boolean {

@@ -48,6 +48,29 @@
 .dialog__select-option {
 }
 
+.dialog__toggle-button {
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  display: none;
+
+  border: 1px solid $primary-color;
+  border-radius: 100%;
+
+  cursor: pointer;
+
+  height: 20px;
+  width: 20px;
+}
+
+.dialog__icon {
+  height: 20px;
+  width: 30px;
+
+  fill: $dark-gray;
+}
+
 .dialog__actions-container {
   display: flex;
   flex-direction: row;

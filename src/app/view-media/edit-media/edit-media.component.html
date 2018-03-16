@@ -31,22 +31,17 @@
   </div>
 
   <div class="dialog__form-group--textarea">
-    <label class="dialog__label">Description</label>
+    <div>
+      <label class="dialog__label">Description</label>
 
-    <button 
-      *ngIf="!editDescription"
-      class="dialog__edit-description"
-      (click)="editDescription = true"
-    >
-      edit
-    </button>
-    <button 
-      *ngIf="editDescription"
-      class="dialog__preview-description"
-      (click)="editDescription = false"
-    >
-      preview
-    </button>
+      <label class="dialog__toggle-button"
+        [class.selected]="editDescription"
+      >
+        <input type="radio" (click)="editDescription = !editDescription" />
+        <mat-icon *ngIf="editDescription" svgIcon="preview" class="dialog__icon"></mat-icon>
+        <mat-icon *ngIf="!editDescription" svgIcon="edit" class="dialog__icon"></mat-icon>
+      </label>
+    </div>
 
     <div *ngIf="!editDescription" class="dialog__property--markdown">
       <markdown [data]="data.description"></markdown>

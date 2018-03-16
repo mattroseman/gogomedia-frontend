@@ -20,7 +20,7 @@
       "prefix": "app",
       "styles": [
         "sass/styles.scss",
-        "../node_modules/prismjs/themes/prism-okaida.css"
+        "../node_modules/prismjs/themes/prism.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
