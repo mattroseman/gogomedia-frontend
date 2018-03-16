@@ -12,7 +12,6 @@ import { MarkdownModule } from 'angular2-markdown';
 import { ApiService } from './api.service';
 
 import { TrimNamePipe } from './trim-name.pipe';
-import { DescriptionNiceViewPipe } from './description-nice-view.pipe';
 
 import { AppComponent } from './app.component';
 import { AddMediaComponent } from './view-media/add-media/add-media.component';
@@ -33,8 +32,7 @@ import { EditMediaComponent } from './view-media/edit-media/edit-media.component
     LoginComponent,
     SignupComponent,
     TrimNamePipe,
-    EditMediaComponent,
-    DescriptionNiceViewPipe
+    EditMediaComponent
   ],
   imports: [
     BrowserModule,
