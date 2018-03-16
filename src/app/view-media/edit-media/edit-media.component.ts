@@ -9,10 +9,14 @@ import { Media } from '../../media';
   styleUrls: ['./edit-media.component.scss']
 })
 export class EditMediaComponent implements OnInit {
+  editDescription: boolean;
+
   constructor(
     public dialogRef: MatDialogRef<EditMediaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Media
-  ) {}
+  ) {
+    this.editDescription = data.description == "";
+  }
 
   ngOnInit() {
   }

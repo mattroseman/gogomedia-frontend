@@ -5,6 +5,11 @@
   flex-direction: column;
 }
 
+.dialog__title {
+  padding: 0px;
+  margin-bottom: 5px;
+}
+
 .dialog__form-group, .dialog__form-group--textarea {
   display: flex;
 }
@@ -12,6 +17,8 @@
 .dialog__form-group {
   flex-direction: row;
   justify-content: flex-start;
+
+  margin-top: 5px;
 }
 
 .dialog__form-group--textarea {
@@ -31,6 +38,11 @@
 
 .dialog__property--textarea {
   height: 100px;
+}
+
+.dialog__property--markdown {
+  border: 1px solid $dark-gray;
+  padding: 3px;
 }
 
 .dialog__select-option {

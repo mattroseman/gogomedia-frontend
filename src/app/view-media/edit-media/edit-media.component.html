@@ -1,13 +1,17 @@
 <div class="edit-media-dialog-container">
-  <h2>{{ data.name }}</h2>
+  <h2 class="dialog__title">{{ data.name }}</h2>
+
+  <mat-divider></mat-divider>
 
   <div class="dialog__form-group">
     <label class="dialog__label">Name</label>
+
     <input type="text" class="dialog__property" [(ngModel)]="data.name"/>
   </div>
 
   <div class="dialog__form-group">
     <label class="dialog__label">Medium</label>
+
     <select class="dialog__property" [(ngModel)]="data.medium">
       <option class="dialog__select-option" value="other">Other</option>
       <option class="dialog__select-option" value="film">Film</option>
@@ -18,6 +22,7 @@
 
   <div class="dialog__form-group">
     <label class="dialog__label">Consumed State</label>
+
     <select class="dialog__property" [(ngModel)]="data.consumed_state">
       <option class="dialog__select-option" value="not started">Not Started</option>
       <option class="dialog__select-option" value="started">Started</option>
@@ -27,8 +32,28 @@
 
   <div class="dialog__form-group--textarea">
     <label class="dialog__label">Description</label>
-    <markdown [data]="data.description"></markdown>
+
+    <button 
+      *ngIf="!editDescription"
+      class="dialog__edit-description"
+      (click)="editDescription = true"
+    >
+      edit
+    </button>
+    <button 
+      *ngIf="editDescription"
+      class="dialog__preview-description"
+      (click)="editDescription = false"
+    >
+      preview
+    </button>
+
+    <div *ngIf="!editDescription" class="dialog__property--markdown">
+      <markdown [data]="data.description"></markdown>
+    </div>
+
     <textarea 
+      *ngIf="editDescription"
       class="dialog__property--textarea"
       [(ngModel)]="data.description"
       maxlength=500
