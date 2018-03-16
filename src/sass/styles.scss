@@ -36,6 +36,10 @@ ul {
   border-width: 1.5px;
 }
 
+label {
+  font-weight: bold;
+}
+
 textarea, input[type=text], input[type=password] {
   border: 1px solid $dark-gray;
   background-color: $white;
