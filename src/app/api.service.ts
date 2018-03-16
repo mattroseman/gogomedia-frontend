@@ -99,7 +99,7 @@ export class ApiService {
   }
 
   /*
-  loggedIn checks if there is a jwt token and user in local storage, if there is then there is 
+  loggedIn checks if there is a jwt token and user in local storage, if there is then there is
   a user logged in
    */
   loggedIn(): boolean {
@@ -138,6 +138,8 @@ export class ApiService {
           return 'success';
         }),
         catchError(this.handleError(`login`, () => {
+          this.storage.remove('jwt');
+          this.storage.remove('user');
           this.currentUser = '';
           this.authToken = '';
         }))
@@ -173,6 +175,8 @@ export class ApiService {
           return 'success';
         }),
         catchError(this.handleError(`logout`, () => {
+          this.storage.remove('jwt');
+          this.storage.remove('user');
           this.currentUser = '';
           this.authToken = '';
         }))
@@ -288,7 +292,16 @@ export class ApiService {
   private handleError(operation='operation', callback?: () => void) {
     return (error: any): Observable<string> => {
       if (callback) callback();
+      console.log(error);
       console.error(`${operation} failed with error: ${error.error.message}`);
+      if (error.status == 401) {
+        // If the user's auth token is invalid for some reason, log the user out
+        // TODO if the user tries to access another user's data, it'll log them out, is that good behavior?
+        this.storage.remove('jwt');
+        this.storage.remove('user');
+        this.currentUser = '';
+        this.authToken = '';
+      }
 
       return of(error.error.message);
     };

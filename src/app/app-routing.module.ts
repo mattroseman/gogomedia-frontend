@@ -6,7 +6,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ViewMediaComponent } from './view-media/view-media.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/media', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'media', component: ViewMediaComponent }
