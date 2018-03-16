@@ -8,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MarkdownModule } from 'angular2-markdown';
+import { StorageServiceModule } from 'angular-webstorage-service';
 
 import { ApiService } from './api.service';
 
@@ -44,7 +45,8 @@ import { EditMediaComponent } from './view-media/edit-media/edit-media.component
     MatDialogModule,
     MatDividerModule,
     MatIconModule,
-    MarkdownModule
+    MarkdownModule,
+    StorageServiceModule
   ],
   entryComponents: [EditMediaComponent],
   providers: [ApiService],

@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { Subject } from 'rxjs/Subject';
 import { catchError, tap, map } from 'rxjs/operators';
+import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 import { Media } from './media';
 
@@ -48,7 +49,6 @@ const apiUrl = environment.apiUrl;
 
 @Injectable()
 export class ApiService {
-  public loggedIn;
   private currentUser;
   private authToken;
 
@@ -58,10 +58,17 @@ export class ApiService {
   mediaUpdates = new Subject<Media[]>();
   currentMediaList: Media[];
 
-  constructor(private http: HttpClient) {
-    this.loggedIn = false;
-    this.currentUser = '';
-    this.authToken = '';
+  constructor(
+    private http: HttpClient,
+    @Inject(LOCAL_STORAGE) private storage: WebStorageService
+  ) {
+    if (this.loggedIn()) {
+      this.currentUser = this.storage.get('user');
+      this.authToken = this.storage.get('jwt');
+    } else {
+      this.currentUser = '';
+      this.authToken = '';
+    }
   }
 
   /*
@@ -92,6 +99,14 @@ export class ApiService {
   }
 
   /*
+  loggedIn checks if there is a jwt token and user in local storage, if there is then there is 
+  a user logged in
+   */
+  loggedIn(): boolean {
+    return this.storage.get('jwt') !== null && this.storage.get('user') !== null;
+  }
+
+  /*
   login takes a username and password and logs in the user with the API
   @return: an observable with a type string that will be 'success' or an error message
    */
@@ -113,7 +128,8 @@ export class ApiService {
         map((response: LoginApiResponse) => {
           console.log(`user: ${username} was successfully logged in`);
 
-          this.loggedIn = true;
+          this.storage.set('jwt', response.auth_token);
+          this.storage.set('user', username);
           this.currentUser = username;
           this.authToken = response.auth_token;
 
@@ -122,7 +138,6 @@ export class ApiService {
           return 'success';
         }),
         catchError(this.handleError(`login`, () => {
-          this.loggedIn = false;
           this.currentUser = '';
           this.authToken = '';
         }))
@@ -134,7 +149,7 @@ export class ApiService {
   @return: an observable with a type string that will be 'success' or an error message
    */
   logout(): Observable<string> {
-    if (!this.loggedIn) {
+    if (!this.loggedIn()) {
       return of('not logged in');
     }
 
@@ -150,14 +165,14 @@ export class ApiService {
         map((response: LogoutApiResponse) => {
           console.log(`user: ${this.currentUser} was successfully logged out`);
 
-          this.loggedIn = false;
+          this.storage.remove('jwt');
+          this.storage.remove('user');
           this.currentUser = '';
           this.authToken = '';
 
           return 'success';
         }),
         catchError(this.handleError(`logout`, () => {
-          this.loggedIn = false;
           this.currentUser = '';
           this.authToken = '';
         }))

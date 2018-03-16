@@ -33,7 +33,7 @@ export class AppComponent {
   }
 
   isLoggedIn(): boolean {
-    return this.apiService.loggedIn;
+    return this.apiService.loggedIn();
   }
 
   logout(): void {

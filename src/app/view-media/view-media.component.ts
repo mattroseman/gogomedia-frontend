@@ -38,7 +38,7 @@ export class ViewMediaComponent implements OnInit {
 
   ngOnInit() {
     // if the user isn't logged in yet, redirect to login page
-    if (!this.apiService.loggedIn) {
+    if (!this.apiService.loggedIn()) {
       this.router.navigate(['/login']);
     }
 
