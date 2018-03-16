@@ -10,7 +10,7 @@
   margin-bottom: 5px;
 }
 
-.dialog__form-group, .dialog__form-group--textarea {
+.dialog__form-group, .dialog__form-group--description {
   display: flex;
 }
 
@@ -21,8 +21,10 @@
   margin-top: 5px;
 }
 
-.dialog__form-group--textarea {
+.dialog__form-group--description {
   flex-direction: column;
+
+  max-height: 250px;
 }
 
 .dialog__label {
@@ -32,7 +34,7 @@
 .dialog__label--description {
 }
 
-.dialog__property, .dialog__property--textarea {
+.dialog__property, .dialog__property--textarea, .dialog__property--markdown {
   margin-bottom: 10px;
 }
 
@@ -40,11 +42,11 @@
 }
 
 .dialog__property--textarea {
-  height: 100px;
+  height: 250px;
 }
 
 .dialog__property--markdown {
-  /*border: 1px solid $dark-gray;*/
+  overflow-y: scroll;
   padding: 3px;
 }
 
