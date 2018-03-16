@@ -16,7 +16,7 @@ export class EditMediaComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<EditMediaComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Media
+    @Inject(MAT_DIALOG_DATA) public data: Media,
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) {

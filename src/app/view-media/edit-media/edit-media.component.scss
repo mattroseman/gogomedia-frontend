@@ -29,6 +29,9 @@
   width: 200px;
 }
 
+.dialog__label--description {
+}
+
 .dialog__property, .dialog__property--textarea {
   margin-bottom: 10px;
 }
@@ -41,24 +44,33 @@
 }
 
 .dialog__property--markdown {
-  border: 1px solid $dark-gray;
+  /*border: 1px solid $dark-gray;*/
   padding: 3px;
 }
 
 .dialog__select-option {
 }
 
+.dialog__description-label-edit-toggle {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .dialog__toggle-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   cursor: pointer;
+
+  width: 30px;
+  height: 30px;
 }
 
 input[type="radio"] {
   display: none;
-
-  border: 1px solid $primary-color;
-  border-radius: 100%;
-
-  cursor: pointer;
 
   height: 20px;
   width: 20px;
@@ -68,7 +80,8 @@ input[type="radio"] {
   height: 20px;
   width: 30px;
 
-  fill: $dark-gray;
+  fill: $primary-color;
+  stroke: $primary-color;
 }
 
 .dialog__actions-container {

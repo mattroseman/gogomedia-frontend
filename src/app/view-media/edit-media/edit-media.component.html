@@ -31,8 +31,8 @@
   </div>
 
   <div class="dialog__form-group--textarea">
-    <div>
-      <label class="dialog__label">Description</label>
+    <div class="dialog__description-label-edit-toggle">
+      <label class="dialog__label--description">Description</label>
 
       <label class="dialog__toggle-button"
         [class.selected]="editDescription"
@@ -55,6 +55,8 @@
     >
     </textarea>
   </div>
+
+  <mat-divider></mat-divider>
 
   <div mat-dialog-actions>
     <div class="dialog__actions-container">
