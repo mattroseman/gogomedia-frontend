@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MarkdownModule } from 'angular2-markdown';
 
 import { ApiService } from './api.service';
 
 import { TrimNamePipe } from './trim-name.pipe';
+import { DescriptionNiceViewPipe } from './description-nice-view.pipe';
 
 import { AppComponent } from './app.component';
 import { AddMediaComponent } from './view-media/add-media/add-media.component';
@@ -31,7 +33,8 @@ import { EditMediaComponent } from './view-media/edit-media/edit-media.component
     LoginComponent,
     SignupComponent,
     TrimNamePipe,
-    EditMediaComponent
+    EditMediaComponent,
+    DescriptionNiceViewPipe
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { EditMediaComponent } from './view-media/edit-media/edit-media.component
     BrowserAnimationsModule,
     MatDialogModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    MarkdownModule
   ],
   entryComponents: [EditMediaComponent],
   providers: [ApiService],

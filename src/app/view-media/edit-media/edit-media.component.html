@@ -27,6 +27,7 @@
 
   <div class="dialog__form-group--textarea">
     <label class="dialog__label">Description</label>
+    <markdown [data]="data.description"></markdown>
     <textarea 
       class="dialog__property--textarea"
       [(ngModel)]="data.description"
