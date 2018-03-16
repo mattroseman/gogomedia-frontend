@@ -20,7 +20,7 @@ export class EditMediaComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Media,
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
-    private _markdwon: MarkdownService
+    private _markdown: MarkdownService
   ) {
     this.editDescription = data.description == "";
     this.registerIcons();
@@ -32,9 +32,13 @@ export class EditMediaComponent implements OnInit {
     // see this link https://mathiasbynens.github.io/rel-noopener/
     // TODO consider this link, and see if it makes more sense to use defualt link behavior
     // https://css-tricks.com/use-target_blank/
-    this._markdwon.renderer.link = (href: string, title: string, text: string) => {
+    this._markdown.renderer.link = (href: string, title: string, text: string) => {
       return `<a href=${href} target='_blank' rel='noopener noreferrer'>${text}</a>`
     };
+    this._markdown.setMarkedOptions({
+      gfm: true,
+      breaks: true
+    });
   }
 
   registerIcons(): void {
