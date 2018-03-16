@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
+import { MarkdownService } from 'angular2-markdown';
 
 import { Media } from '../../media';
 
@@ -18,13 +19,22 @@ export class EditMediaComponent implements OnInit {
     public dialogRef: MatDialogRef<EditMediaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Media,
     private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private _markdwon: MarkdownService
   ) {
     this.editDescription = data.description == "";
     this.registerIcons();
   }
 
   ngOnInit() {
+    // change the behavior of markdown generator to include target='_blank' to open links in a new tab/window
+    // the rel='noopener noreferrer' is a countermeasure to a specific attack when opening cross origin sites in a new tab
+    // see this link https://mathiasbynens.github.io/rel-noopener/
+    // TODO consider this link, and see if it makes more sense to use defualt link behavior
+    // https://css-tricks.com/use-target_blank/
+    this._markdwon.renderer.link = (href: string, title: string, text: string) => {
+      return `<a href=${href} target='_blank' rel='noopener noreferrer'>${text}</a>`
+    };
   }
 
   registerIcons(): void {
