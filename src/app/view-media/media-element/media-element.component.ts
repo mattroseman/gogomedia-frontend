@@ -31,8 +31,8 @@ export class MediaElementComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Should update the mediaElement here as well
       if (result) {
+        this.mediaElement = result;
         this.apiService.updateMedia(result).subscribe();
       }
     });
