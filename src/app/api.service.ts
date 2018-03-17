@@ -34,7 +34,7 @@ export class AddApiResponse extends ApiResponse {
 
 export class UpdateApiResponse extends ApiResponse {
   // data includes the newly updated media element
-  data: Media;
+  data: Media | Media[];
 }
 
 export class DeleteApiResponse extends ApiResponse {}
@@ -211,7 +211,7 @@ export class ApiService {
       );
   }
 
-  updateMedia(media: Media): Observable<Media | string> {
+  updateMedia(media: Media | Media[]): Observable<Media | Media[] | string> {
     const url = `${apiUrl}/user/${this.currentUser}/media`;
     const body = media;
     const options = {
@@ -224,14 +224,37 @@ export class ApiService {
     return this.http.put(url, body, options)
       .pipe(
         map((response: UpdateApiResponse) => {
-          console.log(`media: ${response.data.name} was successfully updated`);
 
-          this.currentMediaList = this.currentMediaList.map((mediaElement: Media) => {
-            if (mediaElement.id === response.data.id) {
-              mediaElement = response.data;
+          if (response.data instanceof Media) {
+            // if the response is a single Media element
+            console.log(`media: ${response.data.name} was successfully updated`);
+
+            let responseMedia = <Media>response.data;
+
+            this.currentMediaList = this.currentMediaList.map((mediaElement: Media) => {
+              if (mediaElement.id === responseMedia.id) {
+                mediaElement = responseMedia;
+              }
+
+              return mediaElement;
+            });
+          } else {
+            // if the response is a list of Media elements
+            console.log(`media list was successfully updated`);
+
+            let responseMedia = <Media[]>response.data;
+
+            for (var newMedia of responseMedia) {
+              this.currentMediaList = this.currentMediaList.map((mediaElement: Media) => {
+                if (mediaElement.id === newMedia.id) {
+                  mediaElement = newMedia;
+                }
+
+                return mediaElement;
+              });
             }
-            return mediaElement;
-          });
+          }
+
           this.mediaUpdates.next(this.currentMediaList);
 
           return response.data;
@@ -292,7 +315,6 @@ export class ApiService {
   private handleError(operation='operation', callback?: () => void) {
     return (error: any): Observable<string> => {
       if (callback) callback();
-      console.log(error);
       console.error(`${operation} failed with error: ${error.error.message}`);
       if (error.status == 401) {
         // If the user's auth token is invalid for some reason, log the user out
