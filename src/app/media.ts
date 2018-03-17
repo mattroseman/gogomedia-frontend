@@ -3,5 +3,6 @@ export class Media {
   name: string;
   medium?: string;
   consumed_state?: string;
-  description?: string
+  description?: string;
+  order?: number;
 }
