@@ -1,7 +1,12 @@
 <form (ngSubmit)="add()" class="add-media-form" #addMediaForm="ngForm"> 
   <input type="text" class="add-media__input" [(ngModel)]="media.name" maxlength="80" required name="name">
 
-  <select class="add-media__select" [(ngModel)]="media.medium" name="medium">
+  <select 
+    class="add-media__select"
+    [(ngModel)]="media.medium" 
+    name="medium"
+    (keyup)="onKey($event)"
+  >
     <option class="add-media__select-option" value="other">Other</option>
     <option class="add-media__select-option" value="film">Film</option>
     <option class="add-media__select-option" value="audio">Audio</option>

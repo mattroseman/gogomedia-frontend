@@ -29,4 +29,10 @@ export class AddMediaComponent implements OnInit {
 
     this.media.name = '';
   }
+
+  onKey(event: any): void {
+    if (event.key === 'Enter') {
+      this.add();
+    }
+  }
 }
