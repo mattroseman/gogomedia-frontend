@@ -202,7 +202,7 @@ export class ApiService {
         map((response: AddApiResponse) => {
           console.log(`media: ${response.data.name} was successfully added`);
 
-          this.currentMediaList.push(response.data);
+          this.currentMediaList.unshift(response.data);
           this.mediaUpdates.next(this.currentMediaList);
 
           return response.data;

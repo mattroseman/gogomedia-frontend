@@ -12,7 +12,10 @@ import { Media } from '../../media';
 export class AddMediaComponent implements OnInit {
   media: Media = {
     name: '',
-    medium: 'other'
+    medium: 'other',
+    consumed_state: 'not started',
+    descriptiont: '',
+    order: 0
   };
 
   constructor(private apiService: ApiService) {}
