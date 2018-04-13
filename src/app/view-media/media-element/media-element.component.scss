@@ -13,6 +13,7 @@
   background-color: $white;
 
   margin-bottom: 3px;
+  padding: 1px;
 
   min-height: 25px;
   min-width: 320px;
@@ -29,8 +30,15 @@
 }
 
 .media-element__icon-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
   min-width: 25px;
   background-color: $white;
+
+  border: none
 }
 
 .media-element__icon {
@@ -45,6 +53,8 @@
   justify-content: center;
 
   background-color: $white;
+
+  border: none;
 
   text-align: center;
 

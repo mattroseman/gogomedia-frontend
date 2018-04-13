@@ -14,7 +14,7 @@ export class AddMediaComponent implements OnInit {
     name: '',
     medium: 'other',
     consumed_state: 'not started',
-    descriptiont: '',
+    description: '',
     order: 0
   };
 
